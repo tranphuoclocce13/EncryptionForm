@@ -28,7 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+<<<<<<< HEAD
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EDForm));
+=======
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+>>>>>>> parent of 2915b4b... edit size of tab control
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.rbDES = new System.Windows.Forms.RadioButton();
@@ -82,11 +86,19 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
+<<<<<<< HEAD
             this.tabControl1.Location = new System.Drawing.Point(-1, -2);
             this.tabControl1.Multiline = true;
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(445, 360);
+=======
+            this.tabControl1.Location = new System.Drawing.Point(0, -2);
+            this.tabControl1.Multiline = true;
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(443, 360);
+>>>>>>> parent of 2915b4b... edit size of tab control
             this.tabControl1.TabIndex = 11;
             // 
             // tabPage1
@@ -109,8 +121,13 @@
             this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
+<<<<<<< HEAD
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.tabPage1.Size = new System.Drawing.Size(437, 334);
+=======
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(435, 334);
+>>>>>>> parent of 2915b4b... edit size of tab control
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Encrypt/Decrypt";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -119,11 +136,15 @@
             // 
             this.rbDES.AutoSize = true;
 <<<<<<< HEAD
+<<<<<<< HEAD
             this.rbDES.Location = new System.Drawing.Point(451, 37);
             this.rbDES.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
 =======
             this.rbDES.Location = new System.Drawing.Point(317, 30);
 >>>>>>> origin/master
+=======
+            this.rbDES.Location = new System.Drawing.Point(317, 30);
+>>>>>>> parent of 2915b4b... edit size of tab control
             this.rbDES.Name = "rbDES";
             this.rbDES.Size = new System.Drawing.Size(47, 17);
             this.rbDES.TabIndex = 14;
@@ -136,11 +157,15 @@
             // 
             this.rbRSA.AutoSize = true;
 <<<<<<< HEAD
+<<<<<<< HEAD
             this.rbRSA.Location = new System.Drawing.Point(273, 37);
             this.rbRSA.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
 =======
             this.rbRSA.Location = new System.Drawing.Point(183, 30);
 >>>>>>> origin/master
+=======
+            this.rbRSA.Location = new System.Drawing.Point(183, 30);
+>>>>>>> parent of 2915b4b... edit size of tab control
             this.rbRSA.Name = "rbRSA";
             this.rbRSA.Size = new System.Drawing.Size(47, 17);
             this.rbRSA.TabIndex = 13;
@@ -289,8 +314,13 @@
             this.tabPage2.Controls.Add(this.label5);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
+<<<<<<< HEAD
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.tabPage2.Size = new System.Drawing.Size(437, 334);
+=======
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(435, 334);
+>>>>>>> parent of 2915b4b... edit size of tab control
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "MD5 Checksum";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -406,7 +436,11 @@
             this.tabPage3.Controls.Add(this.tbPrimeP);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
+<<<<<<< HEAD
             this.tabPage3.Size = new System.Drawing.Size(437, 334);
+=======
+            this.tabPage3.Size = new System.Drawing.Size(435, 334);
+>>>>>>> parent of 2915b4b... edit size of tab control
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Generate Key";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -540,7 +574,10 @@
             this.ClientSize = new System.Drawing.Size(442, 387);
             this.Controls.Add(this.progressBar);
             this.Controls.Add(this.tabControl1);
+<<<<<<< HEAD
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+=======
+>>>>>>> parent of 2915b4b... edit size of tab control
             this.Name = "EDForm";
             this.Text = "Encryp/Decrypt Program";
             this.tabControl1.ResumeLayout(false);
@@ -556,6 +593,7 @@
 
         #endregion
 
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;

@@ -69,6 +69,7 @@
             this.tbPrimeQ = new System.Windows.Forms.TextBox();
             this.tbPrimeP = new System.Windows.Forms.TextBox();
             this.progressBar = new System.Windows.Forms.ProgressBar();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -90,6 +91,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.comboBox1);
             this.tabPage1.Controls.Add(this.rbDES);
             this.tabPage1.Controls.Add(this.rbRSA);
             this.tabPage1.Controls.Add(this.rbAES);
@@ -117,7 +119,7 @@
             // rbDES
             // 
             this.rbDES.AutoSize = true;
-            this.rbDES.Location = new System.Drawing.Point(423, 37);
+            this.rbDES.Location = new System.Drawing.Point(451, 37);
             this.rbDES.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.rbDES.Name = "rbDES";
             this.rbDES.Size = new System.Drawing.Size(57, 21);
@@ -130,7 +132,7 @@
             // rbRSA
             // 
             this.rbRSA.AutoSize = true;
-            this.rbRSA.Location = new System.Drawing.Point(244, 37);
+            this.rbRSA.Location = new System.Drawing.Point(273, 37);
             this.rbRSA.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.rbRSA.Name = "rbRSA";
             this.rbRSA.Size = new System.Drawing.Size(57, 21);
@@ -532,6 +534,21 @@
             this.progressBar.TabIndex = 12;
             this.progressBar.Tag = "";
             // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "128 bits",
+            "192 bits",
+            "256 bits"});
+            this.comboBox1.Location = new System.Drawing.Point(138, 34);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.comboBox1.Size = new System.Drawing.Size(83, 24);
+            this.comboBox1.TabIndex = 15;
+            // 
             // EDForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -596,6 +613,7 @@
         private System.Windows.Forms.Button btPlaceStoreKey;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox tbPlaceStoreKey;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
 

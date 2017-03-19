@@ -98,7 +98,7 @@
             this.tabControl1.Multiline = true;
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(443, 360);
+            this.tabControl1.Size = new System.Drawing.Size(443, 390);
             this.tabControl1.TabIndex = 11;
             // 
             // tabPage1
@@ -110,7 +110,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(435, 334);
+            this.tabPage1.Size = new System.Drawing.Size(435, 364);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Encrypt/Decrypt";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -342,9 +342,9 @@
             // 
             this.btStart_1.Enabled = false;
             this.btStart_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btStart_1.Location = new System.Drawing.Point(163, 293);
+            this.btStart_1.Location = new System.Drawing.Point(145, 298);
             this.btStart_1.Name = "btStart_1";
-            this.btStart_1.Size = new System.Drawing.Size(109, 35);
+            this.btStart_1.Size = new System.Drawing.Size(135, 53);
             this.btStart_1.TabIndex = 19;
             this.btStart_1.Text = "START";
             this.btStart_1.UseVisualStyleBackColor = true;
@@ -366,16 +366,17 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(435, 334);
+            this.tabPage2.Size = new System.Drawing.Size(435, 364);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "MD5 Checksum";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // btStart_2
             // 
-            this.btStart_2.Location = new System.Drawing.Point(69, 266);
+            this.btStart_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btStart_2.Location = new System.Drawing.Point(145, 298);
             this.btStart_2.Name = "btStart_2";
-            this.btStart_2.Size = new System.Drawing.Size(286, 49);
+            this.btStart_2.Size = new System.Drawing.Size(137, 53);
             this.btStart_2.TabIndex = 5;
             this.btStart_2.Text = "START";
             this.btStart_2.UseVisualStyleBackColor = true;
@@ -486,7 +487,7 @@
             this.tabPage3.Controls.Add(this.tbPrimeP);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(435, 334);
+            this.tabPage3.Size = new System.Drawing.Size(435, 333);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Generate Key";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -627,9 +628,10 @@
             // 
             this.progressBar.BackColor = System.Drawing.Color.Red;
             this.progressBar.ForeColor = System.Drawing.Color.Fuchsia;
-            this.progressBar.Location = new System.Drawing.Point(-1, 356);
+            this.progressBar.Location = new System.Drawing.Point(-1, 377);
             this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(444, 32);
+            this.progressBar.Size = new System.Drawing.Size(444, 11);
+            this.progressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.progressBar.TabIndex = 12;
             this.progressBar.Tag = "";
             // 

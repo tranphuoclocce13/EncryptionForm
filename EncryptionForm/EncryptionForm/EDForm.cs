@@ -51,11 +51,23 @@ namespace EncryptionForm
         private void rbEncryption_CheckedChanged(object sender, EventArgs e)
         {
             enableKeyInput();
+            if (rbEncryption.Checked)
+            {
+                tbOutputDirectory.Text = tbSourceFile.Text;
+                tbSourceFile.Text = "";
+            }
         }
 
         private void rbDecryption_CheckedChanged(object sender, EventArgs e)
         {
             enableKeyInput();
+            tbKey.Text = "";
+            if (rbDecryption.Checked)
+            {
+                tbSourceFile.Text = tbOutputDirectory.Text;
+                tbOutputDirectory.Text = ""; 
+            }
+
         }
 
         private void enableKeyInput()
@@ -102,7 +114,15 @@ namespace EncryptionForm
             FolderBrowserDialog folderDialog = new FolderBrowserDialog();
             if (folderDialog.ShowDialog() == DialogResult.OK)
             {
-                tbOutputDirectory.Text = folderDialog.SelectedPath + CIPHER_TEXT_FILE;
+                if (rbEncryption.Checked)
+                {
+                    tbOutputDirectory.Text = folderDialog.SelectedPath + CIPHER_TEXT_FILE;
+                }
+
+                else
+                {
+                    tbOutputDirectory.Text = folderDialog.SelectedPath;
+                }      
             }
         }
 
@@ -274,6 +294,20 @@ namespace EncryptionForm
 
 /*********************************Implement Algorithm*******************************************************/
 //Implement RSA
+        private string getFileName(string filePath)
+        {
+            string fileName = string.Empty;
+            for (int i = filePath.Length - 1; i >= 0; i--)
+            {
+                if (filePath[i] == '\\')
+                {
+                    fileName = filePath.Substring(i + 1, filePath.Length - i - 1);
+                    break;
+                }
+            }
+            return fileName;
+        }
+
         private void encryptUsingRSA()
         {
             //generate e & n
@@ -287,16 +321,21 @@ namespace EncryptionForm
 
             string inputFile = tbSourceFile.Text;
             string outputFile = tbOutputDirectory.Text;
+            string fileName = getFileName(inputFile);
 
             //open file to read
             FileStream inputStream = new FileStream(inputFile, FileMode.Open, FileAccess.Read);
-            long fileLength = inputStream.Length;
-            string[] cipherText = new string [fileLength];
+            int fileLength = (int)inputStream.Length;
+            string[] cipherText = new string [fileLength + 1]; //first line for File Name
+            cipherText[0] = fileName;
 
+            progressBar.Maximum = (int)fileLength;
+           
             //encrypt
-            for (long i = 0; i < fileLength; i++)
+            for (int i = 1; i <= fileLength; i++)
             {
                 int data = inputStream.ReadByte();
+                progressBar.Value = (int)i;
                 cipherText[i] = rsa.encrypt(data).ToString();
             }
 
@@ -305,6 +344,9 @@ namespace EncryptionForm
 
             //close input file
             inputStream.Close();
+
+            //Announcement 
+            MessageBox.Show("Encryption Successful", "Congratulation", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void decryptUsingRSA()
@@ -317,25 +359,42 @@ namespace EncryptionForm
             //create obj RSAEncrytion to encrypt
             RSA.RSADecryption rsa = new RSA.RSADecryption(d, n);
 
-
+            //read input to get fileName for output 
             string inputFile = tbSourceFile.Text;
+            string[] cipherText = System.IO.File.ReadAllLines(inputFile);
+            string fileName = cipherText[0];
+            long fileLength = cipherText.Length;
+
             string outputFile = tbOutputDirectory.Text;
+            if (outputFile[outputFile.Length - 1] != '\\')
+            {
+                outputFile += "\\" + fileName;
+            }   
+            else
+            {
+                outputFile += fileName;
+            }
 
             //open file to read and write
             FileStream outputStream = new FileStream(outputFile, FileMode.OpenOrCreate, FileAccess.Write);
-            string[] cipherText = System.IO.File.ReadAllLines(inputFile);
-            long fileLength = cipherText.Length;
+            byte[] data = new byte[fileLength - 1];
+
+            progressBar.Maximum = (int)fileLength;
 
             //decrypt
-            for (long i = 0; i < fileLength; i++)
+            for (long i = 1; i < fileLength; i++)
             {
-                int data = Int32.Parse(cipherText[i]);
-                byte plainData = (byte)rsa.decrypt(data);
-                outputStream.WriteByte(plainData);
+                int tempData = Int32.Parse(cipherText[i]);
+                progressBar.Value = (int)i;
+                data[i-1] = (byte)rsa.decrypt(tempData);
             }
+            outputStream.Write(data, 0, data.Length);
 
             //close output file
             outputStream.Close();
+
+            //Announcement 
+            MessageBox.Show("Decryption Successful", "Congratulation", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void generateRSA()
@@ -367,12 +426,5 @@ namespace EncryptionForm
             System.IO.File.WriteAllLines(publicFile, publicKey);
             System.IO.File.WriteAllLines(privateFile, privateKey);
         }
-
-       
-
-
-
-        
-
     }
 }

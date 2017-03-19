@@ -22,7 +22,7 @@ namespace EncryptionForm
         {
             InitializeComponent();
             keyLength.SelectedIndex = 0;
-            keyLength.Enabled = false;
+            keyLengthGenAES.SelectedIndex = 0;
         }
 
 /*********************************Handle Event*******************************************************/
@@ -344,10 +344,14 @@ namespace EncryptionForm
             if (rbGenAES.Checked)
             {
                 tbGenAES.Enabled = true;
+                keyLengthGenAES.Enabled = true;
+                tbPsw.Enabled = true;
             }
             else
             {
                 tbGenAES.Enabled = false;
+                keyLengthGenAES.Enabled = false;
+                tbPsw.Enabled = false;
             }
             btGenerate.Enabled = true;
         }
@@ -360,6 +364,7 @@ namespace EncryptionForm
             }
             if (rbGenAES.Checked)
             {
+                generateAES();
                 //Add code here
             }
             if (rbGenDES.Checked)
@@ -744,6 +749,31 @@ namespace EncryptionForm
             //Announcement 
             MessageBox.Show("Decryption Successful", "Congratulation", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-
+        private void generateAES()
+        {
+            String password = tbPsw.Text;
+            if (password == "")
+            {
+                MessageBox.Show("Please enter password to generate key", "Empty password", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            int keyLength = 0;
+            switch (keyLengthGenAES.SelectedIndex)
+            {
+                case 0: keyLength = 128; break;
+                case 1: keyLength = 192; break;
+                case 2: keyLength = 256; break;
+                default: break;
+            }
+            byte[] key = genKey(password, keyLength);
+            tbGenAES.Text = BitConverter.ToString(key).Replace("-","");
+        }
+        private byte[] genKey(string password, int keyBytes)
+        {
+            const int Iterations = 300;
+            var keyGenerator = new Rfc2898DeriveBytes(password, Salt, Iterations);
+            return keyGenerator.GetBytes(keyBytes);
+        }
+        private static readonly byte[] Salt = new byte[] { 10, 20, 30, 40, 50, 60, 70, 80 };
     }
 }

@@ -65,6 +65,7 @@
             this.tbGetMD5 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.label13 = new System.Windows.Forms.Label();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.btStore = new System.Windows.Forms.Button();
@@ -80,6 +81,7 @@
             this.tbPrimeQ = new System.Windows.Forms.TextBox();
             this.tbPrimeP = new System.Windows.Forms.TextBox();
             this.progressBar = new System.Windows.Forms.ProgressBar();
+            this.tbRange = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -481,6 +483,8 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.tbRange);
+            this.tabPage3.Controls.Add(this.label13);
             this.tabPage3.Controls.Add(this.radioButton2);
             this.tabPage3.Controls.Add(this.radioButton1);
             this.tabPage3.Controls.Add(this.btStore);
@@ -497,10 +501,19 @@
             this.tabPage3.Controls.Add(this.tbPrimeP);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(435, 333);
+            this.tabPage3.Size = new System.Drawing.Size(435, 364);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Generate Key";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(289, 83);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(51, 13);
+            this.label13.TabIndex = 12;
+            this.label13.Text = "Range  >";
             // 
             // radioButton2
             // 
@@ -614,9 +627,8 @@
             this.tbPublicE.Enabled = false;
             this.tbPublicE.Location = new System.Drawing.Point(111, 80);
             this.tbPublicE.Name = "tbPublicE";
-            this.tbPublicE.Size = new System.Drawing.Size(301, 20);
+            this.tbPublicE.Size = new System.Drawing.Size(103, 20);
             this.tbPublicE.TabIndex = 0;
-            this.tbPublicE.Text = "65537";
             // 
             // tbPrimeQ
             // 
@@ -644,6 +656,14 @@
             this.progressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.progressBar.TabIndex = 12;
             this.progressBar.Tag = "";
+            // 
+            // tbRange
+            // 
+            this.tbRange.Enabled = false;
+            this.tbRange.Location = new System.Drawing.Point(346, 80);
+            this.tbRange.Name = "tbRange";
+            this.tbRange.Size = new System.Drawing.Size(66, 20);
+            this.tbRange.TabIndex = 13;
             // 
             // EDForm
             // 
@@ -725,6 +745,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox tbSourceFile;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox tbRange;
     }
 }
 

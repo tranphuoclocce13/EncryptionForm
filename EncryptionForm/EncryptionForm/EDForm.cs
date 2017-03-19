@@ -292,12 +292,14 @@ namespace EncryptionForm
                 tbPrimeP.Enabled = true;
                 tbPrimeQ.Enabled = true;
                 tbPublicE.Enabled = true;
+                tbRange.Enabled = true;
             }
             else
             {
                 tbPrimeP.Enabled = false;
                 tbPrimeQ.Enabled = false;
                 tbPublicE.Enabled = false;
+                tbRange.Enabled = false;
             }
         }
 
@@ -313,7 +315,7 @@ namespace EncryptionForm
         {
             if (rbGenRSA.Checked)
             {
-                storeRSA();
+                storeRSA();  
             }
         }
 
@@ -480,17 +482,78 @@ namespace EncryptionForm
             MessageBox.Show("Decryption Successful", "Congratulation", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
+        private bool isPrime(int num)
+        {
+            if (num % 2 == 0) return false;
+            if (num % 3 == 0) return false;
+            
+            int n = (int) Math.Sqrt(num);
+            for (int i = 5; i <= n; i += 6)
+            {
+                if (num % i == 0 || num % (i + 2) == 0)
+                    return false;
+            }
+                
+            return true;
+        }
+
         private void generateRSA()
         {
-            tbPrimeP.Text = "17";
-            tbPrimeQ.Text = "31";
-            tbPublicE.Text = "7";
+            try
+            {
+                int beginNum = 100;
+                if (tbRange.Text != "")
+                    beginNum = Int16.Parse(tbRange.Text);
+                int endNum = (beginNum < 100) ? 200 : beginNum * 2; 
+
+                Random random = new Random();
+
+                int p, q;
+
+                while (true)
+                {
+                    p = random.Next(beginNum, endNum);
+                    if (isPrime(p)) break;
+                }
+
+                q = p + 2;
+                while (true)
+                {
+                    if (isPrime(q)) break;
+                    q += 2;
+                }
+
+                int e = 17;
+                if (beginNum > 999) e = 65537;
+
+            tbPrimeP.Text = p.ToString();
+            tbPrimeQ.Text = q.ToString();
+            tbPublicE.Text = e.ToString();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            
+
         }
 
         private void storeRSA()
         {
-            string publicFile = tbPlaceStoreKey.Text + PUBLIC_KEY_FILE;
-            string privateFile = tbPlaceStoreKey.Text + PRIVATE_KEY_FILE;
+            string filePath = tbPlaceStoreKey.Text;
+            if (filePath == string.Empty)
+            {
+                MessageBox.Show("Store key fail", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (filePath[filePath.Length - 1] != '\\')
+            {
+                filePath += "\\";
+            }
+
+            string publicFile = filePath + PUBLIC_KEY_FILE;
+            string privateFile = filePath + PRIVATE_KEY_FILE;
 
             string[] publicKey = new string [2];
             string[] privateKey = new string[2]; 
@@ -508,13 +571,9 @@ namespace EncryptionForm
 
             System.IO.File.WriteAllLines(publicFile, publicKey);
             System.IO.File.WriteAllLines(privateFile, privateKey);
+
+            MessageBox.Show("Store key Successful", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-
-
-
-
-/*********************************MD5 Checksum method*******************************************************/
-
 
 
     }

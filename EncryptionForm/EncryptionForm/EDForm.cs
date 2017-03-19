@@ -186,11 +186,12 @@ namespace EncryptionForm
             }
 
             if (rbAES.Checked)
-            {
-                
+            {   
                 int keyMode = keyLength.SelectedIndex;
-                Console.Write(keyMode);
-                //AES = new AES
+                String key = tbKey.Text;
+                byte[] keybyte = new byte[16];
+                keybyte= (key, 16);
+               // AES = new AES (keyLength.SelectedIndex)
                 if (rbEncryption.Checked == true)
                 {
                     //
@@ -408,8 +409,16 @@ namespace EncryptionForm
 //Check Key if it is AES Key
         private bool isKeyAES()
         {
-            // Add Code Here
-            return true;
+            String key = tbKey.Text;
+            if (keyLength.SelectedIndex == 0 && key.Length != 32 ||
+                keyLength.SelectedIndex == 1 && key.Length != 48 ||
+                keyLength.SelectedIndex == 2 && key.Length != 64)
+                return false;
+            for (int i = 0; i < key.Length; i++)
+                if (key[i] < 48 || (key[i] > 57 && key[i] < 65) || (key[i] > 70 && key[i] < 97) || key[i] > 102)
+                    return false;
+                // Add Code Here
+                return true;
         }
 
 //Check Key if it is RSA Key

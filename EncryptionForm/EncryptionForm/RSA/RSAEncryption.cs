@@ -19,14 +19,24 @@ namespace EncryptionForm.RSA
 
         public int encrypt(int m)
         {
-            int p = m % n;
-            int c = 1;
-            for (int i = 0; i < e; i++)
+            int[] a = new int[100];
+            int k = 0, runner = e;
+            do
             {
-                c *= p;
-                c %= n;
+                a[k] = runner % 2;
+                k++;
+                runner = runner / 2;
             }
-            return c;
+            while (runner != 0);
+            //Quá trình lấy dư
+            long result = 1;
+            for (int i = k - 1; i >= 0; i--)
+            {
+                result = (result * result) % n;
+                if (a[i] == 1)
+                    result = (result * m) % n;
+            }
+            return (int)result;
         }
     }
 }

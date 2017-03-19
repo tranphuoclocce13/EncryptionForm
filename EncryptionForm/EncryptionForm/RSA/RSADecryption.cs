@@ -29,14 +29,14 @@ namespace EncryptionForm.RSA
             }
             while (runner != 0);
             //Quá trình lấy dư
-            int result = 1;
+            long result = 1;
             for (int i = k - 1; i >= 0; i--)
             {
                 result = (result * result) % n;
                 if (a[i] == 1)
                     result = (result * c) % n;
             }
-            return result;
+            return (int)result;
 
         }
     }

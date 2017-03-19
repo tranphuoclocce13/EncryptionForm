@@ -123,7 +123,17 @@ namespace EncryptionForm
             {
                 if (rbEncryption.Checked)
                 {
-                    tbOutputDirectory.Text = folderDialog.SelectedPath + CIPHER_TEXT_FILE;
+                    string outputFile = folderDialog.SelectedPath;
+
+                    if (outputFile[outputFile.Length - 1] != '\\')
+                    {
+                        outputFile += "\\" + CIPHER_TEXT_FILE;
+                    }
+                    else
+                    {
+                        outputFile += CIPHER_TEXT_FILE;
+                    }
+                    tbOutputDirectory.Text = outputFile;
                 }
 
                 else
@@ -190,7 +200,7 @@ namespace EncryptionForm
                 int keyMode = keyLength.SelectedIndex;
                 String key = tbKey.Text;
                 byte[] keybyte = new byte[16];
-                keybyte= (key, 16);
+                //keybyte= (key, 16);
                // AES = new AES (keyLength.SelectedIndex)
                 if (rbEncryption.Checked == true)
                 {
@@ -467,12 +477,20 @@ namespace EncryptionForm
         {
             //generate e & n
             string[] key = tbKey.Lines;
-            int e = Int16.Parse(key[0]);
-            int n = Int16.Parse(key[1]);
+            int e = Int32.Parse(key[0]);
+            int n = Int32.Parse(key[1]);
 
             //create obj RSAEncrytion to encrypt
             RSA.RSAEncryption rsa = new RSA.RSAEncryption(e, n);
 
+            int temp = n;
+            int block = 0;
+
+            while (temp > 200)
+            {
+                block += 1;
+                temp /= 1000;
+            }
 
             string inputFile = tbSourceFile.Text;
             string outputFile = tbOutputDirectory.Text;
@@ -480,19 +498,36 @@ namespace EncryptionForm
 
             //open file to read
             FileStream inputStream = new FileStream(inputFile, FileMode.Open, FileAccess.Read);
-            int fileLength = (int)inputStream.Length;
-            string[] cipherText = new string [fileLength + 1]; //first line for File Name
+            
+            int inputFileLength = (int)inputStream.Length;
+            int outputFileLength = inputFileLength / block + 1; // +1 for file name line
+            if (inputFileLength % block != 0) outputFileLength += 1; // +1 for redundant data
+
+            string[] cipherText = new string[outputFileLength];
             cipherText[0] = fileName;
 
-            progressBar.Maximum = (int)fileLength;
+            progressBar.Maximum = outputFileLength;
            
             //encrypt
-            for (int i = 1; i <= fileLength; i++)
+            temp = block;
+            byte[] readData = new byte[block];
+            int readSize = block;
+            int blockData = 0;
+            for (int i = 1; i < outputFileLength; i++)
             {
-                int data = inputStream.ReadByte();
-                progressBar.Value = (int)i;
-                cipherText[i] = rsa.encrypt(data).ToString();
-            }
+                Array.Clear(readData, 0, block);
+                if (inputFileLength < readSize) readSize = inputFileLength;
+                inputStream.Read(readData, 0, readSize);
+
+                blockData = 0;
+                for (int j = 0; j < block; j++)
+                {
+                    blockData = blockData * 1000 + readData[j];
+                }
+
+                cipherText[i] = rsa.encrypt(blockData).ToString();
+                progressBar.Value = i;
+             }
 
             //write to output file
             System.IO.File.WriteAllLines(outputFile, cipherText);
@@ -508,17 +543,28 @@ namespace EncryptionForm
         {
             //generate d & n
             string[] key = tbKey.Lines;
-            int d = Int16.Parse(key[0]);
-            int n = Int16.Parse(key[1]);
+            int d = Int32.Parse(key[0]);
+            int n = Int32.Parse(key[1]);
 
             //create obj RSAEncrytion to encrypt
             RSA.RSADecryption rsa = new RSA.RSADecryption(d, n);
+
+            int temp = n;
+            int block = 0;
+
+            while (temp > 200)
+            {
+                block += 1;
+                temp /= 1000;
+            }
 
             //read input to get fileName for output 
             string inputFile = tbSourceFile.Text;
             string[] cipherText = System.IO.File.ReadAllLines(inputFile);
             string fileName = cipherText[0];
-            long fileLength = cipherText.Length;
+
+            int intputFileLength = cipherText.Length;
+            int outputFileLength = (intputFileLength - 1) * block; // subtract line filename 
 
             string outputFile = tbOutputDirectory.Text;
             if (outputFile[outputFile.Length - 1] != '\\')
@@ -532,18 +578,34 @@ namespace EncryptionForm
 
             //open file to read and write
             FileStream outputStream = new FileStream(outputFile, FileMode.OpenOrCreate, FileAccess.Write);
-            byte[] data = new byte[fileLength - 1];
+            byte[] data = new byte[outputFileLength];
 
-            progressBar.Maximum = (int)fileLength;
+            progressBar.Maximum = intputFileLength;
 
             //decrypt
-            for (long i = 1; i < fileLength; i++)
+            int counter = 0;
+            int readData = 0;
+            int writeData = 0;
+            temp = block;
+            for (int i = 1; i < intputFileLength; i++)
             {
-                int tempData = Int32.Parse(cipherText[i]);
-                progressBar.Value = (int)i;
-                data[i-1] = (byte)rsa.decrypt(tempData);
+                readData = Int32.Parse(cipherText[i]);
+                readData = rsa.decrypt(readData);
+
+                while (readData > 0)
+                {
+                    temp -= 1;
+                    writeData = readData % 1000;
+                    if (writeData == 0) outputFileLength = counter + temp;
+                    data[counter + temp] = (byte) (writeData); 
+                    readData /= 1000;   
+                }
+                temp = block;
+                counter += block;
+
+                progressBar.Value = i;
             }
-            outputStream.Write(data, 0, data.Length);
+            outputStream.Write(data, 0, outputFileLength);
 
             //close output file
             outputStream.Close();
@@ -573,7 +635,7 @@ namespace EncryptionForm
             {
                 int beginNum = 100;
                 if (tbRange.Text != "")
-                    beginNum = Int16.Parse(tbRange.Text);
+                    beginNum = Int32.Parse(tbRange.Text);
                 int endNum = (beginNum < 100) ? 200 : beginNum * 2; 
 
                 Random random = new Random();
@@ -594,6 +656,7 @@ namespace EncryptionForm
                 }
 
                 int e = 17;
+                if ((p - 1) * (q - 1) > 65537) e = 65537;
 
             tbPrimeP.Text = p.ToString();
             tbPrimeQ.Text = q.ToString();

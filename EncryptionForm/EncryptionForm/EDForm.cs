@@ -183,6 +183,8 @@ namespace EncryptionForm
         {
             if (isValidKey() == false) return;
 
+            if (isValidAddress() == false) return;
+
             if (rbRSA.Checked == true)
             {
                 if (rbEncryption.Checked == true)
@@ -408,6 +410,16 @@ namespace EncryptionForm
 
 /*********************************Handle Valid Key*******************************************************/
 /*Check Key is Valid before Encrypt/Decrypt*/
+        private bool isValidAddress()
+        {
+            if (tbOutputDirectory.Text == string.Empty || tbSourceFile.Text == string.Empty)
+            {
+                MessageBox.Show("Directory not set", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            return true;
+
+        }
         private bool isValidKey()
         {
             if (rbAES.Checked == true)
@@ -836,6 +848,7 @@ namespace EncryptionForm
             }
             byte[] key = genKey(password, keyLength);
             tbGenAES.Text = BitConverter.ToString(key).Replace("-","");
+            tbGenDES.Text = BitConverter.ToString(key).Replace("-", "");
         }
         private byte[] genKey(string password, int keyBytes)
         {

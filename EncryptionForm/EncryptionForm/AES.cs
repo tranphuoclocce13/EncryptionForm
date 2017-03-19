@@ -73,7 +73,7 @@ namespace EncryptionForm
         }
 
         //Encrypt one 128-bit block of plaintext
-        private byte[] encyptOneBLock(byte[] plainText)
+        public byte[] encyptOneBLock(byte[] plainText)
         {
             byte[] cipherText = new byte[Constants.BLOCK_SIZE];
 
@@ -101,7 +101,7 @@ namespace EncryptionForm
         }
 
         //Decrypt one 128-bit block of ciphertext
-        private byte[] decyptOneBLock(byte[] cipherText)
+        public byte[] decyptOneBLock(byte[] cipherText)
         {
             byte[] plainText = new byte[Constants.BLOCK_SIZE];
 

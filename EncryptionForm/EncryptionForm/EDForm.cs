@@ -187,18 +187,13 @@ namespace EncryptionForm
 
             if (rbAES.Checked)
             {   
-                int keyMode = keyLength.SelectedIndex;
-                String key = tbKey.Text;
-                byte[] keybyte = new byte[16];
-                keybyte= (key, 16);
-               // AES = new AES (keyLength.SelectedIndex)
                 if (rbEncryption.Checked == true)
                 {
-                    //
+                    encryptUsingAES();
                 }
                 else
                 {
-                    //
+                    decryptUsingAES();
                 }
             }
 
@@ -214,7 +209,16 @@ namespace EncryptionForm
                 }
             }
         }
-
+        private static byte[] ToByteArray(String HexString)
+        {
+            int NumberChars = HexString.Length;
+            byte[] bytes = new byte[NumberChars / 2];
+            for (int i = 0; i < NumberChars; i += 2)
+            {
+                bytes[i / 2] = Convert.ToByte(HexString.Substring(i, 2), 16);
+            }
+            return bytes;
+        }
 /*MD5 Checksum*/
 
         private void rbGetMD5_CheckedChanged(object sender, EventArgs e)
@@ -642,9 +646,104 @@ namespace EncryptionForm
 
             MessageBox.Show("Store key Successful", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+//Implement RSA
+        private void encryptUsingAES()
+        {
+            int keyMode = keyLength.SelectedIndex;
+            String keyInStr = tbKey.Text;
+            byte[] keyInByte = ToByteArray(keyInStr);
 
+            AES Aes = new AES(keyMode, keyInByte);
 
+            string inputFile = tbSourceFile.Text;
+            string outputFile = tbOutputDirectory.Text;
+            string fileName = getFileName(inputFile);
 
+            //open file to read
+            FileStream inputStream = new FileStream(inputFile, FileMode.Open, FileAccess.Read);
+            int fileLength = (int)inputStream.Length;
+            String[] cipherText; 
+            byte[] plainTextBlock = new byte[16];
+            byte[] cipherTextBlock = new byte[16];
+            if ((fileLength) % 16 != 0)
+                cipherText = new String[16 * ((fileLength / 16) + 1) + 2];
+            else
+                cipherText = new String[fileLength + 2];
+
+            cipherText[0] = fileName; /*first line for File Name*/
+            cipherText[1] = Convert.ToString(fileLength);
+            progressBar.Maximum = cipherText.Length - 16;
+
+            //encrypt
+            for (int i = 2; i < cipherText.Length; i+=16)
+            {
+                Array.Clear(plainTextBlock, 0, plainTextBlock.Length);
+                inputStream.Read(plainTextBlock, 0, 16);
+                cipherTextBlock = Aes.encyptOneBLock(plainTextBlock);
+                for (int j = 0; j < 16; j++)
+                    cipherText[i + j] = cipherTextBlock[j].ToString();
+                progressBar.Value = i;
+            }
+            //write to output file
+            System.IO.File.WriteAllLines(outputFile, cipherText);
+
+            //close input file
+            inputStream.Close();
+
+            //Announcement 
+            MessageBox.Show("Encryption Successful", "Congratulation", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        private void decryptUsingAES()
+        {
+            int keyMode = keyLength.SelectedIndex;
+            String keyInStr = tbKey.Text;
+            byte[] keyInByte = ToByteArray(keyInStr);
+
+            AES Aes = new AES(keyMode, keyInByte);
+
+            string inputFile = tbSourceFile.Text;
+            string[] cipherText = System.IO.File.ReadAllLines(inputFile);
+            byte[] plainTextBlock = new byte[16];
+            byte[] cipherTextBlock = new byte[16];
+            string fileName = cipherText[0];
+            int fileSize = Int32.Parse(cipherText[1]);
+            int fileLength = cipherText.Length;
+
+            string outputFile = tbOutputDirectory.Text;
+            if (outputFile[outputFile.Length - 1] != '\\')
+            {
+                outputFile += "\\" + fileName;
+            }
+            else
+            {
+                outputFile += fileName;
+            }
+
+            //open file to read and write
+            FileStream outputStream = new FileStream(outputFile, FileMode.OpenOrCreate, FileAccess.Write);
+            byte[] plainText = new byte[fileLength - 2];
+
+            progressBar.Maximum = fileLength - 16;
+
+            //decrypt
+            for (int i = 2; i < fileLength; i+=16)
+            {
+                for (int j = 0; j < 16; j++)
+                    cipherTextBlock[j] = Convert.ToByte(cipherText[i + j], 10);
+                plainTextBlock = Aes.decyptOneBLock(cipherTextBlock);
+                for (int j = 0; j < 16; j++)
+                    plainText[i + j - 2] = plainTextBlock[j];
+                progressBar.Value = i;
+            }
+
+            outputStream.Write(plainText, 0, fileSize);
+
+            //close output file
+            outputStream.Close();
+
+            //Announcement 
+            MessageBox.Show("Decryption Successful", "Congratulation", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
 
     }
 }

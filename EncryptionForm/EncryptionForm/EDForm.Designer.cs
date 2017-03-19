@@ -380,38 +380,43 @@
             this.btStart_2.TabIndex = 5;
             this.btStart_2.Text = "START";
             this.btStart_2.UseVisualStyleBackColor = true;
+            this.btStart_2.Click += new System.EventHandler(this.btStart_2_Click);
             // 
             // rbVerify
             // 
             this.rbVerify.AutoSize = true;
-            this.rbVerify.Location = new System.Drawing.Point(217, 16);
+            this.rbVerify.Location = new System.Drawing.Point(230, 17);
             this.rbVerify.Name = "rbVerify";
             this.rbVerify.Size = new System.Drawing.Size(77, 17);
             this.rbVerify.TabIndex = 4;
             this.rbVerify.TabStop = true;
             this.rbVerify.Text = "Verify MD5";
             this.rbVerify.UseVisualStyleBackColor = true;
+            this.rbVerify.CheckedChanged += new System.EventHandler(this.rbVerify_CheckedChanged);
             // 
             // rbGetMD5
             // 
             this.rbGetMD5.AutoSize = true;
-            this.rbGetMD5.Location = new System.Drawing.Point(69, 16);
+            this.rbGetMD5.Location = new System.Drawing.Point(82, 17);
             this.rbGetMD5.Name = "rbGetMD5";
             this.rbGetMD5.Size = new System.Drawing.Size(71, 17);
             this.rbGetMD5.TabIndex = 3;
             this.rbGetMD5.TabStop = true;
             this.rbGetMD5.Text = "Get MD5 ";
             this.rbGetMD5.UseVisualStyleBackColor = true;
+            this.rbGetMD5.CheckedChanged += new System.EventHandler(this.rbGetMD5_CheckedChanged);
             // 
             // tbCompare
             // 
-            this.tbCompare.Location = new System.Drawing.Point(25, 203);
+            this.tbCompare.Enabled = false;
+            this.tbCompare.Location = new System.Drawing.Point(25, 208);
             this.tbCompare.Name = "tbCompare";
             this.tbCompare.Size = new System.Drawing.Size(311, 20);
             this.tbCompare.TabIndex = 1;
             // 
             // tbMD5Checksum
             // 
+            this.tbMD5Checksum.Enabled = false;
             this.tbMD5Checksum.Location = new System.Drawing.Point(25, 142);
             this.tbMD5Checksum.Name = "tbMD5Checksum";
             this.tbMD5Checksum.Size = new System.Drawing.Size(311, 20);
@@ -420,7 +425,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(22, 187);
+            this.label7.Location = new System.Drawing.Point(22, 192);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(74, 13);
             this.label7.TabIndex = 0;
@@ -428,21 +433,25 @@
             // 
             // btCopyMD5
             // 
+            this.btCopyMD5.Enabled = false;
             this.btCopyMD5.Location = new System.Drawing.Point(351, 141);
             this.btCopyMD5.Name = "btCopyMD5";
             this.btCopyMD5.Size = new System.Drawing.Size(75, 23);
             this.btCopyMD5.TabIndex = 2;
             this.btCopyMD5.Text = "Copy MD5";
             this.btCopyMD5.UseVisualStyleBackColor = true;
+            this.btCopyMD5.Click += new System.EventHandler(this.btCopyMD5_Click);
             // 
             // btGetMD5
             // 
+            this.btGetMD5.Enabled = false;
             this.btGetMD5.Location = new System.Drawing.Point(351, 66);
             this.btGetMD5.Name = "btGetMD5";
             this.btGetMD5.Size = new System.Drawing.Size(75, 23);
             this.btGetMD5.TabIndex = 2;
             this.btGetMD5.Text = "Browse...";
             this.btGetMD5.UseVisualStyleBackColor = true;
+            this.btGetMD5.Click += new System.EventHandler(this.btGetMD5_Click);
             // 
             // label6
             // 
@@ -455,6 +464,7 @@
             // 
             // tbGetMD5
             // 
+            this.tbGetMD5.Enabled = false;
             this.tbGetMD5.Location = new System.Drawing.Point(25, 68);
             this.tbGetMD5.Name = "tbGetMD5";
             this.tbGetMD5.Size = new System.Drawing.Size(311, 20);

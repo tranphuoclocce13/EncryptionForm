@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -200,6 +201,88 @@ namespace EncryptionForm
 
 /*MD5 Checksum*/
 
+        private void rbGetMD5_CheckedChanged(object sender, EventArgs e)
+        {
+            tbGetMD5.Enabled = true;
+            btGetMD5.Enabled = true;
+            tbMD5Checksum.Enabled = true;
+            btCopyMD5.Enabled = true;
+    
+            if (rbGetMD5.Checked)
+            {
+                tbCompare.Enabled = false;
+            }
+        }
+
+        private void rbVerify_CheckedChanged(object sender, EventArgs e)
+        {
+            tbCompare.Text = string.Empty;
+            tbGetMD5.Text = string.Empty;
+            tbMD5Checksum.Text = string.Empty;
+
+            if (rbVerify.Checked)
+            {
+                tbCompare.Enabled = true;
+            }
+        }
+
+        private void btCopyMD5_Click(object sender, EventArgs e)
+        {
+            if (tbMD5Checksum.Text != "")
+            {
+                Clipboard.SetText(tbMD5Checksum.Text);
+                MessageBox.Show("MD5 has been copied to clipboard", "Copy Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            } 
+        }
+
+        private void btGetMD5_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openDialog = new OpenFileDialog();
+
+            if (openDialog.ShowDialog() == DialogResult.OK)
+            {
+                tbGetMD5.Text  = openDialog.FileName;
+            }
+        }
+
+        private void btStart_2_Click(object sender, EventArgs e)
+        {
+            string fileName = tbGetMD5.Text;
+            string md5String = string.Empty;
+            byte[] data;
+            try
+            {
+                using (var md5 = MD5.Create())
+                {
+                    using (var stream = File.OpenRead(fileName))
+                    {
+                        data = md5.ComputeHash(stream);
+                        md5String = BitConverter.ToString(data);
+                        md5String = md5String.Replace("-", "");
+                    }
+                }
+                tbMD5Checksum.Text = md5String;
+
+                if (rbVerify.Checked)
+                {
+                    if (md5String == tbCompare.Text)
+                    {
+                        MessageBox.Show("Correct MD5", "Congratulation", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Wrong MD5", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                MessageBox.Show("Cannot Create MD5 for this file", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
+        }
 
 /*Generate Key*/
         private void rbGenRSA_CheckedChanged(object sender, EventArgs e)
@@ -426,5 +509,13 @@ namespace EncryptionForm
             System.IO.File.WriteAllLines(publicFile, publicKey);
             System.IO.File.WriteAllLines(privateFile, privateKey);
         }
+
+
+
+
+/*********************************MD5 Checksum method*******************************************************/
+
+
+
     }
 }

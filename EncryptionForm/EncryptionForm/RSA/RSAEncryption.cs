@@ -8,19 +8,19 @@ namespace EncryptionForm.RSA
 {
     class RSAEncryption
     {
-        private decimal n = 0;
-        private decimal e = 0;
+        private int n = 0;
+        private int e = 0;
 
-        public RSAEncryption(decimal e, decimal n)
+        public RSAEncryption(int e, int n)
         {
             this.n = n;
             this.e = e;
         }
 
-        public decimal encrypt(decimal m)
+        public int encrypt(int m)
         {
-            decimal p = m % n;
-            decimal c = 1;
+            int p = m % n;
+            int c = 1;
             for (int i = 0; i < e; i++)
             {
                 c *= p;

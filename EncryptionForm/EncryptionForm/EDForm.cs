@@ -467,8 +467,8 @@ namespace EncryptionForm
         {
             //generate e & n
             string[] key = tbKey.Lines;
-            decimal e = Int64.Parse(key[0]);
-            decimal n = Int64.Parse(key[1]);
+            int e = Int16.Parse(key[0]);
+            int n = Int16.Parse(key[1]);
 
             //create obj RSAEncrytion to encrypt
             RSA.RSAEncryption rsa = new RSA.RSAEncryption(e, n);
@@ -508,8 +508,8 @@ namespace EncryptionForm
         {
             //generate d & n
             string[] key = tbKey.Lines;
-            decimal d = Int64.Parse(key[0]);
-            decimal n = Int64.Parse(key[1]);
+            int d = Int16.Parse(key[0]);
+            int n = Int16.Parse(key[1]);
 
             //create obj RSAEncrytion to encrypt
             RSA.RSADecryption rsa = new RSA.RSADecryption(d, n);
@@ -594,7 +594,6 @@ namespace EncryptionForm
                 }
 
                 int e = 17;
-                if (beginNum > 999) e = 65537;
 
             tbPrimeP.Text = p.ToString();
             tbPrimeQ.Text = q.ToString();
@@ -604,8 +603,6 @@ namespace EncryptionForm
             {
                 Console.WriteLine(ex.Message);
             }
-            
-
         }
 
         private void storeRSA()
@@ -629,6 +626,12 @@ namespace EncryptionForm
             RSA.RSAGenerate rsa = new RSA.RSAGenerate(p,q,e);
             decimal d = rsa.D;
             decimal n = rsa.N;
+
+            if (d == 0 || n < 256)
+            {
+                MessageBox.Show("Invalid key, please generate the other", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             publicKey[0] = e.ToString();
             publicKey[1] = privateKey[1] = n.ToString();

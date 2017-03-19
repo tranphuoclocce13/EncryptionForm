@@ -8,25 +8,36 @@ namespace EncryptionForm.RSA
 {
     class RSADecryption
     {
-        private decimal n = 0;
-        private decimal d = 0;
+        private int n = 0;
+        private int d = 0;
 
-        public RSADecryption(decimal d, decimal n)
+        public RSADecryption(int d, int n)
         {
             this.n = n;
             this.d = d;
         }
 
-        public decimal decrypt(decimal c)
+        public int decrypt(int c)
         {
-            decimal p = c % n;
-            decimal m = 1;
-            for (int i = 0; i < d; i++)
+            int[] a = new int[100];
+            int k = 0, runner = d;
+            do
             {
-                m *= p;
-                m %= n;
+                a[k] = runner % 2;
+                k++;
+                runner = runner / 2;
             }
-            return m;
+            while (runner != 0);
+            //Quá trình lấy dư
+            int result = 1;
+            for (int i = k - 1; i >= 0; i--)
+            {
+                result = (result * result) % n;
+                if (a[i] == 1)
+                    result = (result * c) % n;
+            }
+            return result;
+
         }
     }
 }

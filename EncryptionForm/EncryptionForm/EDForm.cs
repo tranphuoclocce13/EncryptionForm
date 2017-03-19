@@ -160,7 +160,12 @@ namespace EncryptionForm
             FolderBrowserDialog folderDialog = new FolderBrowserDialog();
             if (folderDialog.ShowDialog() == DialogResult.OK)
             {
-                tbPlaceStoreKey.Text = folderDialog.SelectedPath;
+                string filePath = folderDialog.SelectedPath;
+                if (filePath[filePath.Length - 1] != '\\')
+                {
+                    filePath += "\\";
+                }
+                tbPlaceStoreKey.Text = filePath;
             }
         }
 
@@ -311,6 +316,35 @@ namespace EncryptionForm
                 tbPublicE.Enabled = false;
                 tbRange.Enabled = false;
             }
+            btGenerate.Enabled = true;
+        }
+
+        private void rbGenDES_CheckedChanged(object sender, EventArgs e)
+        {
+            //Add code here
+            if (rbGenDES.Checked)
+            {
+                tbGenDES.Enabled = true;
+            }
+            else
+            {
+                tbGenDES.Enabled = false;
+            }
+            btGenerate.Enabled = true;
+        }
+
+        private void rbGenAES_CheckedChanged(object sender, EventArgs e)
+        {
+            //Add code here
+            if (rbGenAES.Checked)
+            {
+                tbGenAES.Enabled = true;
+            }
+            else
+            {
+                tbGenAES.Enabled = false;
+            }
+            btGenerate.Enabled = true;
         }
 
         private void btGenerate_Click(object sender, EventArgs e)
@@ -319,6 +353,15 @@ namespace EncryptionForm
             {
                 generateRSA();
             }
+            if (rbGenAES.Checked)
+            {
+                //Add code here
+            }
+            if (rbGenDES.Checked)
+            {
+                //Add code here
+            }
+            btStore.Enabled = true;
         }
 
         private void btStore_Click(object sender, EventArgs e)
@@ -326,6 +369,14 @@ namespace EncryptionForm
             if (rbGenRSA.Checked)
             {
                 storeRSA();  
+            }
+            if (rbGenAES.Checked)
+            {
+                //Add code here
+            }
+            if (rbGenDES.Checked)
+            {
+                //Add code here
             }
         }
 
@@ -557,11 +608,6 @@ namespace EncryptionForm
                 return;
             }
 
-            if (filePath[filePath.Length - 1] != '\\')
-            {
-                filePath += "\\";
-            }
-
             string publicFile = filePath + PUBLIC_KEY_FILE;
             string privateFile = filePath + PRIVATE_KEY_FILE;
 
@@ -584,6 +630,8 @@ namespace EncryptionForm
 
             MessageBox.Show("Store key Successful", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
+
 
 
     }

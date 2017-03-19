@@ -65,9 +65,10 @@
             this.tbGetMD5 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tbRange = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.rbGenAES = new System.Windows.Forms.RadioButton();
+            this.rbGenDES = new System.Windows.Forms.RadioButton();
             this.btStore = new System.Windows.Forms.Button();
             this.rbGenRSA = new System.Windows.Forms.RadioButton();
             this.btPlaceStoreKey = new System.Windows.Forms.Button();
@@ -81,7 +82,8 @@
             this.tbPrimeQ = new System.Windows.Forms.TextBox();
             this.tbPrimeP = new System.Windows.Forms.TextBox();
             this.progressBar = new System.Windows.Forms.ProgressBar();
-            this.tbRange = new System.Windows.Forms.TextBox();
+            this.tbGenDES = new System.Windows.Forms.TextBox();
+            this.tbGenAES = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -97,11 +99,10 @@
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Location = new System.Drawing.Point(0, -2);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabControl1.Multiline = true;
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(591, 480);
+            this.tabControl1.Size = new System.Drawing.Size(443, 390);
             this.tabControl1.TabIndex = 11;
             // 
             // tabPage1
@@ -110,11 +111,10 @@
             this.tabPage1.Controls.Add(this.panel2);
             this.tabPage1.Controls.Add(this.panel1);
             this.tabPage1.Controls.Add(this.btStart_1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 25);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tabPage1.Size = new System.Drawing.Size(583, 451);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage1.Size = new System.Drawing.Size(435, 364);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Encrypt/Decrypt";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -130,19 +130,17 @@
             this.panel3.Controls.Add(this.label3);
             this.panel3.Controls.Add(this.tbSourceFile);
             this.panel3.Controls.Add(this.label2);
-            this.panel3.Location = new System.Drawing.Point(-5, 138);
-            this.panel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel3.Location = new System.Drawing.Point(-4, 112);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(591, 215);
+            this.panel3.Size = new System.Drawing.Size(443, 175);
             this.panel3.TabIndex = 22;
             // 
             // btChooseKey
             // 
             this.btChooseKey.Enabled = false;
-            this.btChooseKey.Location = new System.Drawing.Point(473, 148);
-            this.btChooseKey.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btChooseKey.Location = new System.Drawing.Point(355, 120);
             this.btChooseKey.Name = "btChooseKey";
-            this.btChooseKey.Size = new System.Drawing.Size(100, 53);
+            this.btChooseKey.Size = new System.Drawing.Size(75, 43);
             this.btChooseKey.TabIndex = 18;
             this.btChooseKey.Text = "Choose Key File";
             this.btChooseKey.UseVisualStyleBackColor = true;
@@ -151,31 +149,28 @@
             // tbKey
             // 
             this.tbKey.Enabled = false;
-            this.tbKey.Location = new System.Drawing.Point(19, 148);
-            this.tbKey.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbKey.Location = new System.Drawing.Point(14, 120);
             this.tbKey.Multiline = true;
             this.tbKey.Name = "tbKey";
-            this.tbKey.Size = new System.Drawing.Size(445, 52);
+            this.tbKey.Size = new System.Drawing.Size(335, 43);
             this.tbKey.TabIndex = 17;
             this.tbKey.TextChanged += new System.EventHandler(this.tbKey_TextChanged);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(15, 128);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(11, 104);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(32, 17);
+            this.label4.Size = new System.Drawing.Size(25, 13);
             this.label4.TabIndex = 16;
             this.label4.Text = "Key";
             // 
             // btOutputDirectory
             // 
             this.btOutputDirectory.Enabled = false;
-            this.btOutputDirectory.Location = new System.Drawing.Point(475, 100);
-            this.btOutputDirectory.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btOutputDirectory.Location = new System.Drawing.Point(356, 81);
             this.btOutputDirectory.Name = "btOutputDirectory";
-            this.btOutputDirectory.Size = new System.Drawing.Size(100, 27);
+            this.btOutputDirectory.Size = new System.Drawing.Size(75, 22);
             this.btOutputDirectory.TabIndex = 14;
             this.btOutputDirectory.Text = "Browse...";
             this.btOutputDirectory.UseVisualStyleBackColor = true;
@@ -184,10 +179,9 @@
             // btSourceFile
             // 
             this.btSourceFile.Enabled = false;
-            this.btSourceFile.Location = new System.Drawing.Point(475, 30);
-            this.btSourceFile.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btSourceFile.Location = new System.Drawing.Point(356, 24);
             this.btSourceFile.Name = "btSourceFile";
-            this.btSourceFile.Size = new System.Drawing.Size(100, 27);
+            this.btSourceFile.Size = new System.Drawing.Size(75, 22);
             this.btSourceFile.TabIndex = 15;
             this.btSourceFile.Text = "Browse..";
             this.btSourceFile.UseVisualStyleBackColor = true;
@@ -196,38 +190,34 @@
             // tbOutputDirectory
             // 
             this.tbOutputDirectory.Enabled = false;
-            this.tbOutputDirectory.Location = new System.Drawing.Point(20, 100);
-            this.tbOutputDirectory.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbOutputDirectory.Location = new System.Drawing.Point(15, 81);
             this.tbOutputDirectory.Name = "tbOutputDirectory";
-            this.tbOutputDirectory.Size = new System.Drawing.Size(445, 22);
+            this.tbOutputDirectory.Size = new System.Drawing.Size(335, 20);
             this.tbOutputDirectory.TabIndex = 12;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(15, 80);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(11, 65);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(112, 17);
+            this.label3.Size = new System.Drawing.Size(84, 13);
             this.label3.TabIndex = 10;
             this.label3.Text = "Output Directory";
             // 
             // tbSourceFile
             // 
             this.tbSourceFile.Enabled = false;
-            this.tbSourceFile.Location = new System.Drawing.Point(20, 32);
-            this.tbSourceFile.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbSourceFile.Location = new System.Drawing.Point(15, 26);
             this.tbSourceFile.Name = "tbSourceFile";
-            this.tbSourceFile.Size = new System.Drawing.Size(445, 22);
+            this.tbSourceFile.Size = new System.Drawing.Size(335, 20);
             this.tbSourceFile.TabIndex = 13;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(15, 12);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(11, 10);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(79, 17);
+            this.label2.Size = new System.Drawing.Size(60, 13);
             this.label2.TabIndex = 11;
             this.label2.Text = "Source File";
             // 
@@ -237,19 +227,17 @@
             this.panel2.Controls.Add(this.label12);
             this.panel2.Controls.Add(this.rbDecryption);
             this.panel2.Controls.Add(this.rbEncryption);
-            this.panel2.Location = new System.Drawing.Point(-7, 69);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel2.Location = new System.Drawing.Point(-5, 56);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(591, 61);
+            this.panel2.Size = new System.Drawing.Size(444, 50);
             this.panel2.TabIndex = 21;
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(16, 6);
-            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label12.Location = new System.Drawing.Point(12, 5);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(71, 17);
+            this.label12.Size = new System.Drawing.Size(53, 13);
             this.label12.TabIndex = 21;
             this.label12.Text = "Operation";
             // 
@@ -257,10 +245,9 @@
             // 
             this.rbDecryption.AutoSize = true;
             this.rbDecryption.Enabled = false;
-            this.rbDecryption.Location = new System.Drawing.Point(348, 27);
-            this.rbDecryption.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rbDecryption.Location = new System.Drawing.Point(261, 22);
             this.rbDecryption.Name = "rbDecryption";
-            this.rbDecryption.Size = new System.Drawing.Size(97, 21);
+            this.rbDecryption.Size = new System.Drawing.Size(76, 17);
             this.rbDecryption.TabIndex = 20;
             this.rbDecryption.TabStop = true;
             this.rbDecryption.Text = "Decryption";
@@ -271,10 +258,9 @@
             // 
             this.rbEncryption.AutoSize = true;
             this.rbEncryption.Enabled = false;
-            this.rbEncryption.Location = new System.Drawing.Point(132, 27);
-            this.rbEncryption.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rbEncryption.Location = new System.Drawing.Point(99, 22);
             this.rbEncryption.Name = "rbEncryption";
-            this.rbEncryption.Size = new System.Drawing.Size(96, 21);
+            this.rbEncryption.Size = new System.Drawing.Size(75, 17);
             this.rbEncryption.TabIndex = 19;
             this.rbEncryption.TabStop = true;
             this.rbEncryption.Text = "Encryption";
@@ -289,10 +275,9 @@
             this.panel1.Controls.Add(this.rbRSA);
             this.panel1.Controls.Add(this.rbAES);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(-7, -10);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Location = new System.Drawing.Point(-5, -8);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(591, 81);
+            this.panel1.Size = new System.Drawing.Size(444, 66);
             this.panel1.TabIndex = 20;
             // 
             // keyLength
@@ -304,20 +289,19 @@
             "128 bits",
             "192 bits",
             "256 bits"});
-            this.keyLength.Location = new System.Drawing.Point(120, 38);
-            this.keyLength.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.keyLength.Location = new System.Drawing.Point(90, 31);
             this.keyLength.Name = "keyLength";
             this.keyLength.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.keyLength.Size = new System.Drawing.Size(83, 24);
+            this.keyLength.Size = new System.Drawing.Size(63, 21);
             this.keyLength.TabIndex = 20;
             // 
             // rbDES
             // 
             this.rbDES.AutoSize = true;
-            this.rbDES.Location = new System.Drawing.Point(445, 41);
-            this.rbDES.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.rbDES.Location = new System.Drawing.Point(334, 33);
+            this.rbDES.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.rbDES.Name = "rbDES";
-            this.rbDES.Size = new System.Drawing.Size(57, 21);
+            this.rbDES.Size = new System.Drawing.Size(47, 17);
             this.rbDES.TabIndex = 19;
             this.rbDES.TabStop = true;
             this.rbDES.Text = "DES";
@@ -327,10 +311,10 @@
             // rbRSA
             // 
             this.rbRSA.AutoSize = true;
-            this.rbRSA.Location = new System.Drawing.Point(251, 41);
-            this.rbRSA.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.rbRSA.Location = new System.Drawing.Point(188, 33);
+            this.rbRSA.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.rbRSA.Name = "rbRSA";
-            this.rbRSA.Size = new System.Drawing.Size(57, 21);
+            this.rbRSA.Size = new System.Drawing.Size(47, 17);
             this.rbRSA.TabIndex = 18;
             this.rbRSA.TabStop = true;
             this.rbRSA.Text = "RSA";
@@ -340,10 +324,9 @@
             // rbAES
             // 
             this.rbAES.AutoSize = true;
-            this.rbAES.Location = new System.Drawing.Point(60, 41);
-            this.rbAES.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rbAES.Location = new System.Drawing.Point(45, 33);
             this.rbAES.Name = "rbAES";
-            this.rbAES.Size = new System.Drawing.Size(56, 21);
+            this.rbAES.Size = new System.Drawing.Size(46, 17);
             this.rbAES.TabIndex = 17;
             this.rbAES.TabStop = true;
             this.rbAES.Text = "AES";
@@ -353,10 +336,9 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 12);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(12, 10);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(67, 17);
+            this.label1.Size = new System.Drawing.Size(50, 13);
             this.label1.TabIndex = 16;
             this.label1.Text = "Algorithm";
             // 
@@ -364,10 +346,9 @@
             // 
             this.btStart_1.Enabled = false;
             this.btStart_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btStart_1.Location = new System.Drawing.Point(193, 367);
-            this.btStart_1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btStart_1.Location = new System.Drawing.Point(145, 298);
             this.btStart_1.Name = "btStart_1";
-            this.btStart_1.Size = new System.Drawing.Size(180, 65);
+            this.btStart_1.Size = new System.Drawing.Size(135, 53);
             this.btStart_1.TabIndex = 19;
             this.btStart_1.Text = "START";
             this.btStart_1.UseVisualStyleBackColor = true;
@@ -386,11 +367,10 @@
             this.tabPage2.Controls.Add(this.label6);
             this.tabPage2.Controls.Add(this.tbGetMD5);
             this.tabPage2.Controls.Add(this.label5);
-            this.tabPage2.Location = new System.Drawing.Point(4, 25);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tabPage2.Size = new System.Drawing.Size(583, 451);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage2.Size = new System.Drawing.Size(435, 364);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "MD5 Checksum";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -398,10 +378,9 @@
             // btStart_2
             // 
             this.btStart_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btStart_2.Location = new System.Drawing.Point(193, 367);
-            this.btStart_2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btStart_2.Location = new System.Drawing.Point(145, 298);
             this.btStart_2.Name = "btStart_2";
-            this.btStart_2.Size = new System.Drawing.Size(183, 65);
+            this.btStart_2.Size = new System.Drawing.Size(137, 53);
             this.btStart_2.TabIndex = 5;
             this.btStart_2.Text = "START";
             this.btStart_2.UseVisualStyleBackColor = true;
@@ -410,10 +389,9 @@
             // rbVerify
             // 
             this.rbVerify.AutoSize = true;
-            this.rbVerify.Location = new System.Drawing.Point(307, 21);
-            this.rbVerify.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rbVerify.Location = new System.Drawing.Point(230, 17);
             this.rbVerify.Name = "rbVerify";
-            this.rbVerify.Size = new System.Drawing.Size(98, 21);
+            this.rbVerify.Size = new System.Drawing.Size(77, 17);
             this.rbVerify.TabIndex = 4;
             this.rbVerify.TabStop = true;
             this.rbVerify.Text = "Verify MD5";
@@ -423,10 +401,9 @@
             // rbGetMD5
             // 
             this.rbGetMD5.AutoSize = true;
-            this.rbGetMD5.Location = new System.Drawing.Point(109, 21);
-            this.rbGetMD5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rbGetMD5.Location = new System.Drawing.Point(82, 17);
             this.rbGetMD5.Name = "rbGetMD5";
-            this.rbGetMD5.Size = new System.Drawing.Size(89, 21);
+            this.rbGetMD5.Size = new System.Drawing.Size(71, 17);
             this.rbGetMD5.TabIndex = 3;
             this.rbGetMD5.TabStop = true;
             this.rbGetMD5.Text = "Get MD5 ";
@@ -436,38 +413,34 @@
             // tbCompare
             // 
             this.tbCompare.Enabled = false;
-            this.tbCompare.Location = new System.Drawing.Point(33, 256);
-            this.tbCompare.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbCompare.Location = new System.Drawing.Point(25, 208);
             this.tbCompare.Name = "tbCompare";
-            this.tbCompare.Size = new System.Drawing.Size(413, 22);
+            this.tbCompare.Size = new System.Drawing.Size(311, 20);
             this.tbCompare.TabIndex = 1;
             // 
             // tbMD5Checksum
             // 
             this.tbMD5Checksum.Enabled = false;
-            this.tbMD5Checksum.Location = new System.Drawing.Point(33, 175);
-            this.tbMD5Checksum.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbMD5Checksum.Location = new System.Drawing.Point(25, 142);
             this.tbMD5Checksum.Name = "tbMD5Checksum";
-            this.tbMD5Checksum.Size = new System.Drawing.Size(413, 22);
+            this.tbMD5Checksum.Size = new System.Drawing.Size(311, 20);
             this.tbMD5Checksum.TabIndex = 1;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(29, 236);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Location = new System.Drawing.Point(22, 192);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(97, 17);
+            this.label7.Size = new System.Drawing.Size(74, 13);
             this.label7.TabIndex = 0;
             this.label7.Text = "Compare With";
             // 
             // btCopyMD5
             // 
             this.btCopyMD5.Enabled = false;
-            this.btCopyMD5.Location = new System.Drawing.Point(468, 174);
-            this.btCopyMD5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btCopyMD5.Location = new System.Drawing.Point(351, 141);
             this.btCopyMD5.Name = "btCopyMD5";
-            this.btCopyMD5.Size = new System.Drawing.Size(100, 28);
+            this.btCopyMD5.Size = new System.Drawing.Size(75, 23);
             this.btCopyMD5.TabIndex = 2;
             this.btCopyMD5.Text = "Copy MD5";
             this.btCopyMD5.UseVisualStyleBackColor = true;
@@ -476,10 +449,9 @@
             // btGetMD5
             // 
             this.btGetMD5.Enabled = false;
-            this.btGetMD5.Location = new System.Drawing.Point(468, 81);
-            this.btGetMD5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btGetMD5.Location = new System.Drawing.Point(351, 66);
             this.btGetMD5.Name = "btGetMD5";
-            this.btGetMD5.Size = new System.Drawing.Size(100, 28);
+            this.btGetMD5.Size = new System.Drawing.Size(75, 23);
             this.btGetMD5.TabIndex = 2;
             this.btGetMD5.Text = "Browse...";
             this.btGetMD5.UseVisualStyleBackColor = true;
@@ -488,38 +460,37 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(29, 155);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Location = new System.Drawing.Point(22, 126);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(106, 17);
+            this.label6.Size = new System.Drawing.Size(83, 13);
             this.label6.TabIndex = 0;
             this.label6.Text = "MD5 Checksum";
             // 
             // tbGetMD5
             // 
             this.tbGetMD5.Enabled = false;
-            this.tbGetMD5.Location = new System.Drawing.Point(33, 84);
-            this.tbGetMD5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbGetMD5.Location = new System.Drawing.Point(25, 68);
             this.tbGetMD5.Name = "tbGetMD5";
-            this.tbGetMD5.Size = new System.Drawing.Size(413, 22);
+            this.tbGetMD5.Size = new System.Drawing.Size(311, 20);
             this.tbGetMD5.TabIndex = 1;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(29, 57);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(22, 46);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(165, 17);
+            this.label5.Size = new System.Drawing.Size(124, 13);
             this.label5.TabIndex = 0;
             this.label5.Text = "Get MD5 Signature from:";
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.tbGenAES);
+            this.tabPage3.Controls.Add(this.tbGenDES);
             this.tabPage3.Controls.Add(this.tbRange);
             this.tabPage3.Controls.Add(this.label13);
-            this.tabPage3.Controls.Add(this.radioButton2);
-            this.tabPage3.Controls.Add(this.radioButton1);
+            this.tabPage3.Controls.Add(this.rbGenAES);
+            this.tabPage3.Controls.Add(this.rbGenDES);
             this.tabPage3.Controls.Add(this.btStore);
             this.tabPage3.Controls.Add(this.rbGenRSA);
             this.tabPage3.Controls.Add(this.btPlaceStoreKey);
@@ -532,57 +503,63 @@
             this.tabPage3.Controls.Add(this.tbPublicE);
             this.tabPage3.Controls.Add(this.tbPrimeQ);
             this.tabPage3.Controls.Add(this.tbPrimeP);
-            this.tabPage3.Location = new System.Drawing.Point(4, 25);
-            this.tabPage3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-<<<<<<< HEAD
             this.tabPage3.Size = new System.Drawing.Size(435, 364);
-=======
-            this.tabPage3.Size = new System.Drawing.Size(583, 451);
->>>>>>> origin/master
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Generate Key";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // tbRange
+            // 
+            this.tbRange.Enabled = false;
+            this.tbRange.Location = new System.Drawing.Point(362, 80);
+            this.tbRange.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbRange.Name = "tbRange";
+            this.tbRange.Size = new System.Drawing.Size(50, 20);
+            this.tbRange.TabIndex = 13;
+            this.tbRange.Text = "10";
+            // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(289, 83);
+            this.label13.Location = new System.Drawing.Point(307, 83);
+            this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(51, 13);
             this.label13.TabIndex = 12;
             this.label13.Text = "Range  >";
             // 
-            // radioButton2
+            // rbGenAES
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(29, 223);
-            this.radioButton2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(56, 21);
-            this.radioButton2.TabIndex = 11;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "AES";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.rbGenAES.AutoSize = true;
+            this.rbGenAES.Location = new System.Drawing.Point(19, 177);
+            this.rbGenAES.Name = "rbGenAES";
+            this.rbGenAES.Size = new System.Drawing.Size(46, 17);
+            this.rbGenAES.TabIndex = 11;
+            this.rbGenAES.TabStop = true;
+            this.rbGenAES.Text = "AES";
+            this.rbGenAES.UseVisualStyleBackColor = true;
+            this.rbGenAES.CheckedChanged += new System.EventHandler(this.rbGenAES_CheckedChanged);
             // 
-            // radioButton1
+            // rbGenDES
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(25, 151);
-            this.radioButton1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(57, 21);
-            this.radioButton1.TabIndex = 10;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "DES";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.rbGenDES.AutoSize = true;
+            this.rbGenDES.Location = new System.Drawing.Point(19, 117);
+            this.rbGenDES.Name = "rbGenDES";
+            this.rbGenDES.Size = new System.Drawing.Size(47, 17);
+            this.rbGenDES.TabIndex = 10;
+            this.rbGenDES.TabStop = true;
+            this.rbGenDES.Text = "DES";
+            this.rbGenDES.UseVisualStyleBackColor = true;
+            this.rbGenDES.CheckedChanged += new System.EventHandler(this.rbGenDES_CheckedChanged);
             // 
             // btStore
             // 
-            this.btStore.Location = new System.Drawing.Point(325, 350);
-            this.btStore.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btStore.Enabled = false;
+            this.btStore.Location = new System.Drawing.Point(244, 284);
             this.btStore.Name = "btStore";
-            this.btStore.Size = new System.Drawing.Size(163, 50);
+            this.btStore.Size = new System.Drawing.Size(122, 41);
             this.btStore.TabIndex = 9;
             this.btStore.Text = "Store";
             this.btStore.UseVisualStyleBackColor = true;
@@ -591,10 +568,9 @@
             // rbGenRSA
             // 
             this.rbGenRSA.AutoSize = true;
-            this.rbGenRSA.Location = new System.Drawing.Point(25, 4);
-            this.rbGenRSA.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rbGenRSA.Location = new System.Drawing.Point(19, 3);
             this.rbGenRSA.Name = "rbGenRSA";
-            this.rbGenRSA.Size = new System.Drawing.Size(57, 21);
+            this.rbGenRSA.Size = new System.Drawing.Size(47, 17);
             this.rbGenRSA.TabIndex = 8;
             this.rbGenRSA.TabStop = true;
             this.rbGenRSA.Text = "RSA";
@@ -603,10 +579,9 @@
             // 
             // btPlaceStoreKey
             // 
-            this.btPlaceStoreKey.Location = new System.Drawing.Point(449, 314);
-            this.btPlaceStoreKey.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btPlaceStoreKey.Location = new System.Drawing.Point(337, 255);
             this.btPlaceStoreKey.Name = "btPlaceStoreKey";
-            this.btPlaceStoreKey.Size = new System.Drawing.Size(100, 28);
+            this.btPlaceStoreKey.Size = new System.Drawing.Size(75, 23);
             this.btPlaceStoreKey.TabIndex = 7;
             this.btPlaceStoreKey.Text = "Browse...";
             this.btPlaceStoreKey.UseVisualStyleBackColor = true;
@@ -615,37 +590,34 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(25, 293);
-            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label11.Location = new System.Drawing.Point(19, 238);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(167, 17);
+            this.label11.Size = new System.Drawing.Size(127, 13);
             this.label11.TabIndex = 6;
             this.label11.Text = "Place where to store key:";
             // 
             // tbPlaceStoreKey
             // 
-            this.tbPlaceStoreKey.Location = new System.Drawing.Point(25, 316);
-            this.tbPlaceStoreKey.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbPlaceStoreKey.Location = new System.Drawing.Point(19, 257);
             this.tbPlaceStoreKey.Name = "tbPlaceStoreKey";
-            this.tbPlaceStoreKey.Size = new System.Drawing.Size(413, 22);
+            this.tbPlaceStoreKey.Size = new System.Drawing.Size(311, 20);
             this.tbPlaceStoreKey.TabIndex = 5;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(33, 102);
-            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label10.Location = new System.Drawing.Point(25, 83);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(86, 17);
+            this.label10.Size = new System.Drawing.Size(66, 13);
             this.label10.TabIndex = 4;
             this.label10.Text = "Public Key e";
             // 
             // btGenerate
             // 
-            this.btGenerate.Location = new System.Drawing.Point(60, 348);
-            this.btGenerate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btGenerate.Enabled = false;
+            this.btGenerate.Location = new System.Drawing.Point(45, 283);
             this.btGenerate.Name = "btGenerate";
-            this.btGenerate.Size = new System.Drawing.Size(195, 52);
+            this.btGenerate.Size = new System.Drawing.Size(146, 42);
             this.btGenerate.TabIndex = 3;
             this.btGenerate.Text = "Generate";
             this.btGenerate.UseVisualStyleBackColor = true;
@@ -654,84 +626,83 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(33, 70);
-            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label9.Location = new System.Drawing.Point(25, 57);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(110, 17);
+            this.label9.Size = new System.Drawing.Size(82, 13);
             this.label9.TabIndex = 2;
             this.label9.Text = "Prime Number q";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(32, 38);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Location = new System.Drawing.Point(24, 31);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(110, 17);
+            this.label8.Size = new System.Drawing.Size(82, 13);
             this.label8.TabIndex = 1;
             this.label8.Text = "Prime Number p";
             // 
             // tbPublicE
             // 
             this.tbPublicE.Enabled = false;
-            this.tbPublicE.Location = new System.Drawing.Point(148, 98);
-            this.tbPublicE.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbPublicE.Location = new System.Drawing.Point(111, 80);
             this.tbPublicE.Name = "tbPublicE";
-<<<<<<< HEAD
-            this.tbPublicE.Size = new System.Drawing.Size(103, 20);
-=======
-            this.tbPublicE.Size = new System.Drawing.Size(400, 22);
->>>>>>> origin/master
+            this.tbPublicE.Size = new System.Drawing.Size(78, 20);
             this.tbPublicE.TabIndex = 0;
             // 
             // tbPrimeQ
             // 
             this.tbPrimeQ.Enabled = false;
-            this.tbPrimeQ.Location = new System.Drawing.Point(148, 66);
-            this.tbPrimeQ.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbPrimeQ.Location = new System.Drawing.Point(111, 54);
             this.tbPrimeQ.Name = "tbPrimeQ";
-            this.tbPrimeQ.Size = new System.Drawing.Size(400, 22);
+            this.tbPrimeQ.Size = new System.Drawing.Size(301, 20);
             this.tbPrimeQ.TabIndex = 0;
             // 
             // tbPrimeP
             // 
             this.tbPrimeP.Enabled = false;
-            this.tbPrimeP.Location = new System.Drawing.Point(148, 34);
-            this.tbPrimeP.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbPrimeP.Location = new System.Drawing.Point(111, 28);
             this.tbPrimeP.Name = "tbPrimeP";
-            this.tbPrimeP.Size = new System.Drawing.Size(400, 22);
+            this.tbPrimeP.Size = new System.Drawing.Size(301, 20);
             this.tbPrimeP.TabIndex = 0;
             // 
             // progressBar
             // 
             this.progressBar.BackColor = System.Drawing.Color.Red;
             this.progressBar.ForeColor = System.Drawing.Color.Fuchsia;
-            this.progressBar.Location = new System.Drawing.Point(-1, 464);
-            this.progressBar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.progressBar.Location = new System.Drawing.Point(-1, 377);
             this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(592, 14);
+            this.progressBar.Size = new System.Drawing.Size(444, 11);
             this.progressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.progressBar.TabIndex = 12;
             this.progressBar.Tag = "";
             // 
-            // tbRange
+            // tbGenDES
             // 
-            this.tbRange.Enabled = false;
-            this.tbRange.Location = new System.Drawing.Point(346, 80);
-            this.tbRange.Name = "tbRange";
-            this.tbRange.Size = new System.Drawing.Size(66, 20);
-            this.tbRange.TabIndex = 13;
+            this.tbGenDES.Enabled = false;
+            this.tbGenDES.Location = new System.Drawing.Point(28, 141);
+            this.tbGenDES.Multiline = true;
+            this.tbGenDES.Name = "tbGenDES";
+            this.tbGenDES.Size = new System.Drawing.Size(384, 30);
+            this.tbGenDES.TabIndex = 14;
+            // 
+            // tbGenAES
+            // 
+            this.tbGenAES.Enabled = false;
+            this.tbGenAES.Location = new System.Drawing.Point(27, 200);
+            this.tbGenAES.Multiline = true;
+            this.tbGenAES.Name = "tbGenAES";
+            this.tbGenAES.Size = new System.Drawing.Size(384, 30);
+            this.tbGenAES.TabIndex = 14;
             // 
             // EDForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(589, 476);
+            this.ClientSize = new System.Drawing.Size(442, 387);
             this.Controls.Add(this.progressBar);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "EDForm";
             this.Text = "Encryp/Decrypt Program";
             this.tabControl1.ResumeLayout(false);
@@ -780,8 +751,8 @@
         private System.Windows.Forms.TextBox tbPlaceStoreKey;
         private System.Windows.Forms.RadioButton rbGenRSA;
         private System.Windows.Forms.Button btStore;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton rbGenAES;
+        private System.Windows.Forms.RadioButton rbGenDES;
         private System.Windows.Forms.Button btStart_1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ComboBox keyLength;
@@ -805,6 +776,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox tbRange;
+        private System.Windows.Forms.TextBox tbGenAES;
+        private System.Windows.Forms.TextBox tbGenDES;
     }
 }
 

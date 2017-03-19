@@ -21,6 +21,8 @@ namespace EncryptionForm
         public EDForm()
         {
             InitializeComponent();
+            keyLength.SelectedIndex = 0;
+            keyLength.Enabled = false;
         }
 
 /*********************************Handle Event*******************************************************/
@@ -28,6 +30,10 @@ namespace EncryptionForm
         private void rbAES_CheckedChanged(object sender, EventArgs e)
         {
             enableOperation();
+            if (rbAES.Checked)
+                keyLength.Enabled = true;
+            else
+                keyLength.Enabled = false;
         }
 
         private void rbRSA_CheckedChanged(object sender, EventArgs e)
@@ -176,6 +182,10 @@ namespace EncryptionForm
 
             if (rbAES.Checked)
             {
+                
+                int keyMode = keyLength.SelectedIndex;
+                Console.Write(keyMode);
+                //AES = new AES
                 if (rbEncryption.Checked == true)
                 {
                     //

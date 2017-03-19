@@ -17,6 +17,7 @@ namespace EncryptionForm
         private const string CIPHER_TEXT_FILE = "Cipher_Text.txt";
         private const string PUBLIC_KEY_FILE = "Public_key.txt";
         private const string PRIVATE_KEY_FILE = "Private_key.txt";
+        private const string AES_KEY_FILE = "AES_key.txt";
 
         public EDForm()
         {
@@ -400,6 +401,7 @@ namespace EncryptionForm
             }
             if (rbGenAES.Checked)
             {
+                storeAES();
                 //Add code here
             }
             if (rbGenDES.Checked)
@@ -841,9 +843,9 @@ namespace EncryptionForm
             int keyLength = 0;
             switch (keyLengthGenAES.SelectedIndex)
             {
-                case 0: keyLength = 128; break;
-                case 1: keyLength = 192; break;
-                case 2: keyLength = 256; break;
+                case 0: keyLength = 16; break;
+                case 1: keyLength = 24; break;
+                case 2: keyLength = 32; break;
                 default: break;
             }
             byte[] key = genKey(password, keyLength);
@@ -857,5 +859,26 @@ namespace EncryptionForm
             return keyGenerator.GetBytes(keyBytes);
         }
         private static readonly byte[] Salt = new byte[] { 10, 20, 30, 40, 50, 60, 70, 80 };
+        private void storeAES()
+        {
+            string filePath = tbPlaceStoreKey.Text;
+            if (filePath == string.Empty)
+            {
+                MessageBox.Show("Store key fail", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            string keyMode;
+            if (keyLengthGenAES.SelectedIndex == 0)
+                keyMode = "_128_bit_";
+            else if (keyLengthGenAES.SelectedIndex == 1)
+                keyMode = "_192_bit_";
+            else
+                keyMode = "_256_bit_";
+
+            string keyFile = filePath + keyMode + AES_KEY_FILE;
+
+            System.IO.File.WriteAllText(keyFile, tbGenAES.Text);
+            MessageBox.Show("Store key Successful", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
     }
 }

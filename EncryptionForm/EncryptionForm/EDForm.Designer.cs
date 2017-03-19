@@ -554,7 +554,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(294, 218);
+            this.label14.Location = new System.Drawing.Point(294, 227);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(69, 17);
             this.label14.TabIndex = 16;
@@ -570,7 +570,7 @@
             "128 bits",
             "192 bits",
             "256 bits"});
-            this.keyLengthGenAES.Location = new System.Drawing.Point(88, 212);
+            this.keyLengthGenAES.Location = new System.Drawing.Point(88, 223);
             this.keyLengthGenAES.Name = "keyLengthGenAES";
             this.keyLengthGenAES.Size = new System.Drawing.Size(82, 24);
             this.keyLengthGenAES.TabIndex = 15;
@@ -578,21 +578,22 @@
             // tbGenAES
             // 
             this.tbGenAES.Enabled = false;
-            this.tbGenAES.Location = new System.Drawing.Point(36, 246);
+            this.tbGenAES.Location = new System.Drawing.Point(36, 257);
             this.tbGenAES.Margin = new System.Windows.Forms.Padding(4);
             this.tbGenAES.Multiline = true;
             this.tbGenAES.Name = "tbGenAES";
-            this.tbGenAES.Size = new System.Drawing.Size(511, 36);
+            this.tbGenAES.ReadOnly = true;
+            this.tbGenAES.Size = new System.Drawing.Size(512, 50);
             this.tbGenAES.TabIndex = 14;
             // 
             // tbGenDES
             // 
             this.tbGenDES.Enabled = false;
-            this.tbGenDES.Location = new System.Drawing.Point(37, 165);
+            this.tbGenDES.Location = new System.Drawing.Point(36, 162);
             this.tbGenDES.Margin = new System.Windows.Forms.Padding(4);
             this.tbGenDES.Multiline = true;
             this.tbGenDES.Name = "tbGenDES";
-            this.tbGenDES.Size = new System.Drawing.Size(511, 36);
+            this.tbGenDES.Size = new System.Drawing.Size(512, 50);
             this.tbGenDES.TabIndex = 14;
             // 
             // tbRange
@@ -617,7 +618,7 @@
             // rbGenAES
             // 
             this.rbGenAES.AutoSize = true;
-            this.rbGenAES.Location = new System.Drawing.Point(25, 214);
+            this.rbGenAES.Location = new System.Drawing.Point(25, 225);
             this.rbGenAES.Margin = new System.Windows.Forms.Padding(4);
             this.rbGenAES.Name = "rbGenAES";
             this.rbGenAES.Size = new System.Drawing.Size(56, 21);
@@ -630,7 +631,7 @@
             // rbGenDES
             // 
             this.rbGenDES.AutoSize = true;
-            this.rbGenDES.Location = new System.Drawing.Point(25, 135);
+            this.rbGenDES.Location = new System.Drawing.Point(24, 133);
             this.rbGenDES.Margin = new System.Windows.Forms.Padding(4);
             this.rbGenDES.Name = "rbGenDES";
             this.rbGenDES.Size = new System.Drawing.Size(57, 21);
@@ -643,10 +644,10 @@
             // btStore
             // 
             this.btStore.Enabled = false;
-            this.btStore.Location = new System.Drawing.Point(325, 350);
+            this.btStore.Location = new System.Drawing.Point(331, 374);
             this.btStore.Margin = new System.Windows.Forms.Padding(4);
             this.btStore.Name = "btStore";
-            this.btStore.Size = new System.Drawing.Size(163, 50);
+            this.btStore.Size = new System.Drawing.Size(160, 50);
             this.btStore.TabIndex = 9;
             this.btStore.Text = "Store";
             this.btStore.UseVisualStyleBackColor = true;
@@ -667,7 +668,7 @@
             // 
             // btPlaceStoreKey
             // 
-            this.btPlaceStoreKey.Location = new System.Drawing.Point(449, 314);
+            this.btPlaceStoreKey.Location = new System.Drawing.Point(449, 337);
             this.btPlaceStoreKey.Margin = new System.Windows.Forms.Padding(4);
             this.btPlaceStoreKey.Name = "btPlaceStoreKey";
             this.btPlaceStoreKey.Size = new System.Drawing.Size(100, 28);
@@ -679,7 +680,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(25, 293);
+            this.label11.Location = new System.Drawing.Point(25, 317);
             this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(167, 17);
@@ -688,10 +689,10 @@
             // 
             // tbPlaceStoreKey
             // 
-            this.tbPlaceStoreKey.Location = new System.Drawing.Point(25, 316);
+            this.tbPlaceStoreKey.Location = new System.Drawing.Point(36, 340);
             this.tbPlaceStoreKey.Margin = new System.Windows.Forms.Padding(4);
             this.tbPlaceStoreKey.Name = "tbPlaceStoreKey";
-            this.tbPlaceStoreKey.Size = new System.Drawing.Size(413, 22);
+            this.tbPlaceStoreKey.Size = new System.Drawing.Size(402, 22);
             this.tbPlaceStoreKey.TabIndex = 5;
             // 
             // label10
@@ -707,10 +708,10 @@
             // btGenerate
             // 
             this.btGenerate.Enabled = false;
-            this.btGenerate.Location = new System.Drawing.Point(60, 348);
+            this.btGenerate.Location = new System.Drawing.Point(88, 374);
             this.btGenerate.Margin = new System.Windows.Forms.Padding(4);
             this.btGenerate.Name = "btGenerate";
-            this.btGenerate.Size = new System.Drawing.Size(195, 52);
+            this.btGenerate.Size = new System.Drawing.Size(160, 50);
             this.btGenerate.TabIndex = 3;
             this.btGenerate.Text = "Generate";
             this.btGenerate.UseVisualStyleBackColor = true;
@@ -778,7 +779,7 @@
             // tbPsw
             // 
             this.tbPsw.Enabled = false;
-            this.tbPsw.Location = new System.Drawing.Point(369, 214);
+            this.tbPsw.Location = new System.Drawing.Point(369, 225);
             this.tbPsw.Name = "tbPsw";
             this.tbPsw.Size = new System.Drawing.Size(178, 22);
             this.tbPsw.TabIndex = 17;

@@ -134,7 +134,7 @@
             // btChooseKey
             // 
             this.btChooseKey.Enabled = false;
-            this.btChooseKey.Location = new System.Drawing.Point(324, 120);
+            this.btChooseKey.Location = new System.Drawing.Point(355, 120);
             this.btChooseKey.Name = "btChooseKey";
             this.btChooseKey.Size = new System.Drawing.Size(75, 43);
             this.btChooseKey.TabIndex = 18;
@@ -148,7 +148,7 @@
             this.tbKey.Location = new System.Drawing.Point(14, 120);
             this.tbKey.Multiline = true;
             this.tbKey.Name = "tbKey";
-            this.tbKey.Size = new System.Drawing.Size(305, 43);
+            this.tbKey.Size = new System.Drawing.Size(335, 43);
             this.tbKey.TabIndex = 17;
             this.tbKey.TextChanged += new System.EventHandler(this.tbKey_TextChanged);
             // 
@@ -164,7 +164,7 @@
             // btOutputDirectory
             // 
             this.btOutputDirectory.Enabled = false;
-            this.btOutputDirectory.Location = new System.Drawing.Point(325, 81);
+            this.btOutputDirectory.Location = new System.Drawing.Point(356, 81);
             this.btOutputDirectory.Name = "btOutputDirectory";
             this.btOutputDirectory.Size = new System.Drawing.Size(75, 22);
             this.btOutputDirectory.TabIndex = 14;
@@ -175,7 +175,7 @@
             // btSourceFile
             // 
             this.btSourceFile.Enabled = false;
-            this.btSourceFile.Location = new System.Drawing.Point(325, 24);
+            this.btSourceFile.Location = new System.Drawing.Point(356, 24);
             this.btSourceFile.Name = "btSourceFile";
             this.btSourceFile.Size = new System.Drawing.Size(75, 22);
             this.btSourceFile.TabIndex = 15;
@@ -188,7 +188,7 @@
             this.tbOutputDirectory.Enabled = false;
             this.tbOutputDirectory.Location = new System.Drawing.Point(15, 81);
             this.tbOutputDirectory.Name = "tbOutputDirectory";
-            this.tbOutputDirectory.Size = new System.Drawing.Size(304, 20);
+            this.tbOutputDirectory.Size = new System.Drawing.Size(335, 20);
             this.tbOutputDirectory.TabIndex = 12;
             // 
             // label3
@@ -205,7 +205,7 @@
             this.tbSourceFile.Enabled = false;
             this.tbSourceFile.Location = new System.Drawing.Point(15, 26);
             this.tbSourceFile.Name = "tbSourceFile";
-            this.tbSourceFile.Size = new System.Drawing.Size(304, 20);
+            this.tbSourceFile.Size = new System.Drawing.Size(335, 20);
             this.tbSourceFile.TabIndex = 13;
             // 
             // label2

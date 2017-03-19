@@ -52,6 +52,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RSA\RSADecryption.cs" />
+    <Compile Include="RSA\RSAEncryption.cs" />
+    <Compile Include="RSA\RSAGenerate.cs" />
     <EmbeddedResource Include="EDForm.resx">
       <DependentUpon>EDForm.cs</DependentUpon>
     </EmbeddedResource>

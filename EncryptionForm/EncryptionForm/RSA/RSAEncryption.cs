@@ -9,7 +9,8 @@ namespace EncryptionForm.RSA
     class RSAEncryption
     {
         private int n = 0;
-        private int e = 0;
+        private int e = 0; 
+        
 
         public RSAEncryption(int e, int n)
         {

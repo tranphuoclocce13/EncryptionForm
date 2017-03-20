@@ -513,19 +513,20 @@ namespace EncryptionForm
                 temp /= 1000;
             }
 
-            string inputFile = tbSourceFile.Text;
-            string outputFile = tbOutputDirectory.Text;
-            string fileName = getFileName(inputFile);
+            string inputFilePath = tbSourceFile.Text;
+            string outputFilePath = tbOutputDirectory.Text;
+            string fileName = getFileName(inputFilePath);
 
             //open file to read
-            FileStream inputStream = new FileStream(inputFile, FileMode.Open, FileAccess.Read);
+            FileStream inputStream = new FileStream(inputFilePath, FileMode.Open, FileAccess.Read);
+            StreamWriter outputStream = new StreamWriter(outputFilePath);
             
             int inputFileLength = (int)inputStream.Length;
-            int outputFileLength = inputFileLength / block + 1; // +1 for file name line
+            int outputFileLength = inputFileLength / block;
             if (inputFileLength % block != 0) outputFileLength += 1; // +1 for redundant data
 
-            string[] cipherText = new string[outputFileLength];
-            cipherText[0] = fileName;
+            outputStream.WriteLine(fileName);
+            outputStream.WriteLine(inputFileLength); // first line is file name second is file size
 
             progressBar.Maximum = outputFileLength;
            
@@ -534,7 +535,9 @@ namespace EncryptionForm
             byte[] readData = new byte[block];
             int readSize = block;
             int blockData = 0;
-            for (int i = 1; i < outputFileLength; i++)
+            string cipherData;
+
+            for (int i = 1; i <= outputFileLength; i++)
             {
                 Array.Clear(readData, 0, block);
                 if (inputFileLength < readSize) readSize = inputFileLength;
@@ -545,15 +548,21 @@ namespace EncryptionForm
                 {
                     blockData = blockData * 1000 + readData[j];
                 }
+<<<<<<< HEAD
                 cipherText[i] = rsa.encrypt(blockData).ToString();
+=======
+
+                cipherData = rsa.encrypt(blockData).ToString();
+                outputStream.WriteLine(cipherData);
+
+>>>>>>> origin/master
                 progressBar.Value = i;
              }
 
-            //write to output file
-            System.IO.File.WriteAllLines(outputFile, cipherText);
 
             //close input file
             inputStream.Close();
+            outputStream.Close();
 
             //Announcement 
             MessageBox.Show("Encryption Successful", "Congratulation", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -580,55 +589,58 @@ namespace EncryptionForm
 
             //read input to get fileName for output 
             string inputFile = tbSourceFile.Text;
-            string[] cipherText = System.IO.File.ReadAllLines(inputFile);
-            string fileName = cipherText[0];
 
-            int intputFileLength = cipherText.Length;
-            int outputFileLength = (intputFileLength - 1) * block; // subtract line filename 
+            //open file to read and write
+            StreamReader inputStream = new StreamReader(inputFile);
+            string fileName = inputStream.ReadLine(); // read 1st line to get file name
 
             string outputFile = tbOutputDirectory.Text;
             if (outputFile[outputFile.Length - 1] != '\\')
             {
                 outputFile += "\\" + fileName;
-            }   
+            }
             else
             {
                 outputFile += fileName;
             }
 
-            //open file to read and write
             FileStream outputStream = new FileStream(outputFile, FileMode.OpenOrCreate, FileAccess.Write);
-            byte[] data = new byte[outputFileLength];
 
-            progressBar.Maximum = intputFileLength;
+            int outputFileLength = Int32.Parse(inputStream.ReadLine()); // read 2nd line to get file size
+
+            byte[] data = new byte[block];
+
+            progressBar.Maximum = outputFileLength;
 
             //decrypt
-            int counter = 0;
+            int counter = block;
             int readData = 0;
             int writeData = 0;
+            int writeSize = block;
             temp = block;
-            for (int i = 1; i < intputFileLength; i++)
+            for (int i = 1; i <= outputFileLength; i += block)
             {
-                readData = Int32.Parse(cipherText[i]);
+                readData = Int32.Parse(inputStream.ReadLine());
                 readData = rsa.decrypt(readData);
 
                 while (readData > 0)
                 {
-                    temp -= 1;
+                    counter -= 1;
                     writeData = readData % 1000;
-                    if (writeData == 0) outputFileLength = counter + temp;
-                    data[counter + temp] = (byte) (writeData); 
+                    if (writeData == 0) writeSize = counter;
+                    data[counter] = (byte) (writeData); 
                     readData /= 1000;   
                 }
-                temp = block;
-                counter += block;
+                counter = block;
 
+                outputStream.Write(data, 0, writeSize);
                 progressBar.Value = i;
             }
-            outputStream.Write(data, 0, outputFileLength);
+            
 
             //close output file
             outputStream.Close();
+            inputStream.Close();
 
             //Announcement 
             MessageBox.Show("Decryption Successful", "Congratulation", MessageBoxButtons.OK, MessageBoxIcon.Information);

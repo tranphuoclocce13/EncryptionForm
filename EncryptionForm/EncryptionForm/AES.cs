@@ -73,22 +73,20 @@ namespace EncryptionForm
         }
 
         //Encrypt one 128-bit block of plaintext
-        public byte[] encyptOneBLock(byte[] plainText)
+        public void encyptOneBLock(byte[] plainText, byte[] cipherText)
         {
-            byte[] cipherText = new byte[Constants.BLOCK_SIZE];
-
             for (int i = 0; i < Constants.BLOCK_SIZE; ++i)
             {
                 state[i / 4, i % 4] = plainText[i];
             }
             addRoundKey(0);
-            for (int i = 1; i < numOfRound; i++)
-            {
-                substituteBytes();
-                shiftRows();
-                mixColumns();
-                addRoundKey(i);
-            }
+            //for (int i = 1; i < numOfRound; i++)
+            //{
+            //    substituteBytes();
+            //    shiftRows();
+            //    mixColumns();
+            //    addRoundKey(i);
+            //}
             substituteBytes();
             shiftRows();
             addRoundKey(numOfRound);
@@ -97,14 +95,11 @@ namespace EncryptionForm
             {
                 cipherText[i] = state[i / 4, i % 4];
             }
-            return cipherText;
         }
 
         //Decrypt one 128-bit block of ciphertext
-        public byte[] decyptOneBLock(byte[] cipherText)
+        public void decyptOneBLock(byte[] cipherText, byte[] plainText)
         {
-            byte[] plainText = new byte[Constants.BLOCK_SIZE];
-
             for (int i = 0; i < Constants.BLOCK_SIZE; ++i)
             {
                 state[i / 4, i % 4] = cipherText[i];
@@ -126,7 +121,6 @@ namespace EncryptionForm
             {
                 plainText[i] = state[i / 4, i % 4];
             }
-            return plainText;
         }
 
         //Substitute Bytes Transformation

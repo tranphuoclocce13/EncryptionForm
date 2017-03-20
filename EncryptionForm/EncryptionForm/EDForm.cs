@@ -203,8 +203,6 @@ namespace EncryptionForm
                 int keyMode = keyLength.SelectedIndex;
                 String key = tbKey.Text;
                 byte[] keybyte = new byte[16];
-                //keybyte= (key, 16);
-               // AES = new AES (keyLength.SelectedIndex)
 
                 if (rbEncryption.Checked == true)
                 {

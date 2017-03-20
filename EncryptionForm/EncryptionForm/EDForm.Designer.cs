@@ -65,6 +65,7 @@
             this.tbGetMD5 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tbPsw = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.keyLengthGenAES = new System.Windows.Forms.ComboBox();
             this.tbGenAES = new System.Windows.Forms.TextBox();
@@ -86,7 +87,6 @@
             this.tbPrimeQ = new System.Windows.Forms.TextBox();
             this.tbPrimeP = new System.Windows.Forms.TextBox();
             this.progressBar = new System.Windows.Forms.ProgressBar();
-            this.tbPsw = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -143,20 +143,21 @@
             // 
             // btChooseKey
             // 
+            this.btChooseKey.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btChooseKey.Enabled = false;
+            this.btChooseKey.Image = ((System.Drawing.Image)(resources.GetObject("btChooseKey.Image")));
             this.btChooseKey.Location = new System.Drawing.Point(473, 148);
             this.btChooseKey.Margin = new System.Windows.Forms.Padding(4);
             this.btChooseKey.Name = "btChooseKey";
             this.btChooseKey.Size = new System.Drawing.Size(100, 53);
             this.btChooseKey.TabIndex = 18;
-            this.btChooseKey.Text = "Choose Key File";
             this.btChooseKey.UseVisualStyleBackColor = true;
             this.btChooseKey.Click += new System.EventHandler(this.btChooseKey_Click);
             // 
             // tbKey
             // 
             this.tbKey.Enabled = false;
-            this.tbKey.Location = new System.Drawing.Point(19, 148);
+            this.tbKey.Location = new System.Drawing.Point(20, 148);
             this.tbKey.Margin = new System.Windows.Forms.Padding(4);
             this.tbKey.Multiline = true;
             this.tbKey.Name = "tbKey";
@@ -167,7 +168,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(15, 128);
+            this.label4.Location = new System.Drawing.Point(20, 128);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(32, 17);
@@ -176,32 +177,34 @@
             // 
             // btOutputDirectory
             // 
+            this.btOutputDirectory.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btOutputDirectory.Enabled = false;
-            this.btOutputDirectory.Location = new System.Drawing.Point(475, 100);
+            this.btOutputDirectory.Image = ((System.Drawing.Image)(resources.GetObject("btOutputDirectory.Image")));
+            this.btOutputDirectory.Location = new System.Drawing.Point(475, 80);
             this.btOutputDirectory.Margin = new System.Windows.Forms.Padding(4);
             this.btOutputDirectory.Name = "btOutputDirectory";
-            this.btOutputDirectory.Size = new System.Drawing.Size(100, 27);
+            this.btOutputDirectory.Size = new System.Drawing.Size(100, 45);
             this.btOutputDirectory.TabIndex = 14;
-            this.btOutputDirectory.Text = "Browse...";
             this.btOutputDirectory.UseVisualStyleBackColor = true;
             this.btOutputDirectory.Click += new System.EventHandler(this.btOutputDirectory_Click);
             // 
             // btSourceFile
             // 
+            this.btSourceFile.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btSourceFile.Enabled = false;
-            this.btSourceFile.Location = new System.Drawing.Point(475, 30);
+            this.btSourceFile.Image = ((System.Drawing.Image)(resources.GetObject("btSourceFile.Image")));
+            this.btSourceFile.Location = new System.Drawing.Point(475, 22);
             this.btSourceFile.Margin = new System.Windows.Forms.Padding(4);
             this.btSourceFile.Name = "btSourceFile";
-            this.btSourceFile.Size = new System.Drawing.Size(100, 27);
+            this.btSourceFile.Size = new System.Drawing.Size(100, 45);
             this.btSourceFile.TabIndex = 15;
-            this.btSourceFile.Text = "Browse..";
             this.btSourceFile.UseVisualStyleBackColor = true;
             this.btSourceFile.Click += new System.EventHandler(this.btSourceFile_Click);
             // 
             // tbOutputDirectory
             // 
             this.tbOutputDirectory.Enabled = false;
-            this.tbOutputDirectory.Location = new System.Drawing.Point(20, 100);
+            this.tbOutputDirectory.Location = new System.Drawing.Point(20, 90);
             this.tbOutputDirectory.Margin = new System.Windows.Forms.Padding(4);
             this.tbOutputDirectory.Name = "tbOutputDirectory";
             this.tbOutputDirectory.Size = new System.Drawing.Size(445, 22);
@@ -210,7 +213,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(15, 80);
+            this.label3.Location = new System.Drawing.Point(20, 70);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(112, 17);
@@ -229,7 +232,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(15, 12);
+            this.label2.Location = new System.Drawing.Point(20, 12);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(79, 17);
@@ -242,10 +245,10 @@
             this.panel2.Controls.Add(this.label12);
             this.panel2.Controls.Add(this.rbDecryption);
             this.panel2.Controls.Add(this.rbEncryption);
-            this.panel2.Location = new System.Drawing.Point(-7, 69);
+            this.panel2.Location = new System.Drawing.Point(-6, 69);
             this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(591, 61);
+            this.panel2.Size = new System.Drawing.Size(598, 61);
             this.panel2.TabIndex = 21;
             // 
             // label12
@@ -294,10 +297,10 @@
             this.panel1.Controls.Add(this.rbRSA);
             this.panel1.Controls.Add(this.rbAES);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(-7, -10);
+            this.panel1.Location = new System.Drawing.Point(-6, -10);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(591, 81);
+            this.panel1.Size = new System.Drawing.Size(598, 81);
             this.panel1.TabIndex = 20;
             // 
             // keyLength
@@ -368,14 +371,21 @@
             // 
             // btStart_1
             // 
+            this.btStart_1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btStart_1.AutoSize = true;
+            this.btStart_1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btStart_1.Enabled = false;
             this.btStart_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btStart_1.Location = new System.Drawing.Point(193, 367);
+            this.btStart_1.Image = ((System.Drawing.Image)(resources.GetObject("btStart_1.Image")));
+            this.btStart_1.Location = new System.Drawing.Point(220, 357);
             this.btStart_1.Margin = new System.Windows.Forms.Padding(4);
             this.btStart_1.Name = "btStart_1";
-            this.btStart_1.Size = new System.Drawing.Size(180, 65);
+            this.btStart_1.Size = new System.Drawing.Size(142, 79);
             this.btStart_1.TabIndex = 19;
-            this.btStart_1.Text = "START";
+            this.btStart_1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btStart_1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btStart_1.UseVisualStyleBackColor = true;
             this.btStart_1.Click += new System.EventHandler(this.btStart_1_Click);
             // 
@@ -396,20 +406,21 @@
             this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage2.Size = new System.Drawing.Size(583, 451);
+            this.tabPage2.Size = new System.Drawing.Size(585, 451);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "MD5 Checksum";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // btStart_2
             // 
+            this.btStart_2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btStart_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btStart_2.Location = new System.Drawing.Point(193, 367);
+            this.btStart_2.Image = ((System.Drawing.Image)(resources.GetObject("btStart_2.Image")));
+            this.btStart_2.Location = new System.Drawing.Point(226, 367);
             this.btStart_2.Margin = new System.Windows.Forms.Padding(4);
             this.btStart_2.Name = "btStart_2";
-            this.btStart_2.Size = new System.Drawing.Size(183, 65);
+            this.btStart_2.Size = new System.Drawing.Size(134, 65);
             this.btStart_2.TabIndex = 5;
-            this.btStart_2.Text = "START";
             this.btStart_2.UseVisualStyleBackColor = true;
             this.btStart_2.Click += new System.EventHandler(this.btStart_2_Click);
             // 
@@ -460,7 +471,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(29, 236);
+            this.label7.Location = new System.Drawing.Point(33, 236);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(97, 17);
@@ -469,32 +480,34 @@
             // 
             // btCopyMD5
             // 
+            this.btCopyMD5.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btCopyMD5.Enabled = false;
-            this.btCopyMD5.Location = new System.Drawing.Point(468, 174);
+            this.btCopyMD5.Image = ((System.Drawing.Image)(resources.GetObject("btCopyMD5.Image")));
+            this.btCopyMD5.Location = new System.Drawing.Point(468, 164);
             this.btCopyMD5.Margin = new System.Windows.Forms.Padding(4);
             this.btCopyMD5.Name = "btCopyMD5";
-            this.btCopyMD5.Size = new System.Drawing.Size(100, 28);
+            this.btCopyMD5.Size = new System.Drawing.Size(100, 45);
             this.btCopyMD5.TabIndex = 2;
-            this.btCopyMD5.Text = "Copy MD5";
             this.btCopyMD5.UseVisualStyleBackColor = true;
             this.btCopyMD5.Click += new System.EventHandler(this.btCopyMD5_Click);
             // 
             // btGetMD5
             // 
+            this.btGetMD5.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btGetMD5.Enabled = false;
-            this.btGetMD5.Location = new System.Drawing.Point(468, 81);
+            this.btGetMD5.Image = ((System.Drawing.Image)(resources.GetObject("btGetMD5.Image")));
+            this.btGetMD5.Location = new System.Drawing.Point(468, 73);
             this.btGetMD5.Margin = new System.Windows.Forms.Padding(4);
             this.btGetMD5.Name = "btGetMD5";
-            this.btGetMD5.Size = new System.Drawing.Size(100, 28);
+            this.btGetMD5.Size = new System.Drawing.Size(100, 45);
             this.btGetMD5.TabIndex = 2;
-            this.btGetMD5.Text = "Browse...";
             this.btGetMD5.UseVisualStyleBackColor = true;
             this.btGetMD5.Click += new System.EventHandler(this.btGetMD5_Click);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(29, 155);
+            this.label6.Location = new System.Drawing.Point(33, 155);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(106, 17);
@@ -513,7 +526,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(29, 57);
+            this.label5.Location = new System.Drawing.Point(33, 63);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(165, 17);
@@ -546,10 +559,19 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
             this.tabPage3.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(584, 451);
+            this.tabPage3.Size = new System.Drawing.Size(585, 451);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Generate Key";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // tbPsw
+            // 
+            this.tbPsw.Enabled = false;
+            this.tbPsw.Location = new System.Drawing.Point(369, 224);
+            this.tbPsw.Name = "tbPsw";
+            this.tbPsw.Size = new System.Drawing.Size(178, 22);
+            this.tbPsw.TabIndex = 17;
+            this.tbPsw.UseSystemPasswordChar = true;
             // 
             // label14
             // 
@@ -643,13 +665,14 @@
             // 
             // btStore
             // 
+            this.btStore.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btStore.Enabled = false;
-            this.btStore.Location = new System.Drawing.Point(331, 374);
+            this.btStore.Image = ((System.Drawing.Image)(resources.GetObject("btStore.Image")));
+            this.btStore.Location = new System.Drawing.Point(338, 383);
             this.btStore.Margin = new System.Windows.Forms.Padding(4);
             this.btStore.Name = "btStore";
-            this.btStore.Size = new System.Drawing.Size(160, 50);
+            this.btStore.Size = new System.Drawing.Size(100, 55);
             this.btStore.TabIndex = 9;
-            this.btStore.Text = "Store";
             this.btStore.UseVisualStyleBackColor = true;
             this.btStore.Click += new System.EventHandler(this.btStore_Click);
             // 
@@ -668,12 +691,13 @@
             // 
             // btPlaceStoreKey
             // 
-            this.btPlaceStoreKey.Location = new System.Drawing.Point(449, 337);
+            this.btPlaceStoreKey.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btPlaceStoreKey.Image = ((System.Drawing.Image)(resources.GetObject("btPlaceStoreKey.Image")));
+            this.btPlaceStoreKey.Location = new System.Drawing.Point(448, 329);
             this.btPlaceStoreKey.Margin = new System.Windows.Forms.Padding(4);
             this.btPlaceStoreKey.Name = "btPlaceStoreKey";
-            this.btPlaceStoreKey.Size = new System.Drawing.Size(100, 28);
+            this.btPlaceStoreKey.Size = new System.Drawing.Size(100, 45);
             this.btPlaceStoreKey.TabIndex = 7;
-            this.btPlaceStoreKey.Text = "Browse...";
             this.btPlaceStoreKey.UseVisualStyleBackColor = true;
             this.btPlaceStoreKey.Click += new System.EventHandler(this.btPlaceStoreKey_Click);
             // 
@@ -707,13 +731,14 @@
             // 
             // btGenerate
             // 
+            this.btGenerate.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btGenerate.Enabled = false;
-            this.btGenerate.Location = new System.Drawing.Point(88, 374);
+            this.btGenerate.Image = ((System.Drawing.Image)(resources.GetObject("btGenerate.Image")));
+            this.btGenerate.Location = new System.Drawing.Point(148, 383);
             this.btGenerate.Margin = new System.Windows.Forms.Padding(4);
             this.btGenerate.Name = "btGenerate";
-            this.btGenerate.Size = new System.Drawing.Size(160, 50);
+            this.btGenerate.Size = new System.Drawing.Size(100, 55);
             this.btGenerate.TabIndex = 3;
-            this.btGenerate.Text = "Generate";
             this.btGenerate.UseVisualStyleBackColor = true;
             this.btGenerate.Click += new System.EventHandler(this.btGenerate_Click);
             // 
@@ -776,15 +801,6 @@
             this.progressBar.TabIndex = 12;
             this.progressBar.Tag = "";
             // 
-            // tbPsw
-            // 
-            this.tbPsw.Enabled = false;
-            this.tbPsw.Location = new System.Drawing.Point(369, 224);
-            this.tbPsw.Name = "tbPsw";
-            this.tbPsw.Size = new System.Drawing.Size(178, 22);
-            this.tbPsw.TabIndex = 17;
-            this.tbPsw.UseSystemPasswordChar = true;
-            // 
             // EDForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -799,6 +815,7 @@
             this.Text = "Encryp/Decrypt Program";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel2.ResumeLayout(false);

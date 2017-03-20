@@ -101,12 +101,12 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Location = new System.Drawing.Point(0, -2);
+            this.tabControl1.Location = new System.Drawing.Point(-1, -2);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Multiline = true;
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(591, 480);
+            this.tabControl1.Size = new System.Drawing.Size(593, 480);
             this.tabControl1.TabIndex = 11;
             // 
             // tabPage1
@@ -119,7 +119,7 @@
             this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage1.Size = new System.Drawing.Size(583, 451);
+            this.tabPage1.Size = new System.Drawing.Size(585, 451);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Encrypt/Decrypt";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -546,7 +546,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
             this.tabPage3.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(583, 451);
+            this.tabPage3.Size = new System.Drawing.Size(584, 451);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Generate Key";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -779,7 +779,7 @@
             // tbPsw
             // 
             this.tbPsw.Enabled = false;
-            this.tbPsw.Location = new System.Drawing.Point(369, 225);
+            this.tbPsw.Location = new System.Drawing.Point(369, 224);
             this.tbPsw.Name = "tbPsw";
             this.tbPsw.Size = new System.Drawing.Size(178, 22);
             this.tbPsw.TabIndex = 17;

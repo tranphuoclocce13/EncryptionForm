@@ -760,8 +760,11 @@ namespace EncryptionForm
 
             cipherText[0] = fileName; /*first line for File Name*/
             cipherText[1] = Convert.ToString(fileLength);
-            progressBar.Maximum = cipherText.Length - 16;
-
+            if (cipherText.Length < 16)
+                progressBar.Maximum = cipherText.Length - 1;
+            else
+                progressBar.Maximum = cipherText.Length - 16;
+            progressBar.Value = 1;
             //encrypt
             for (int i = 2; i < cipherText.Length; i+=16)
             {
@@ -810,9 +813,11 @@ namespace EncryptionForm
             //open file to read and write
             FileStream outputStream = new FileStream(outputFile, FileMode.OpenOrCreate, FileAccess.Write);
             byte[] plainText = new byte[fileLength - 2];
-
-            progressBar.Maximum = fileLength - 16;
-
+            if (fileLength < 16)
+                progressBar.Maximum = fileLength - 1;
+            else
+                progressBar.Maximum = fileLength - 16;
+            progressBar.Value = 1;
             //decrypt
             for (int i = 2; i < fileLength; i+=16)
             {
@@ -850,7 +855,6 @@ namespace EncryptionForm
             }
             byte[] key = genKey(password, keyLength);
             tbGenAES.Text = BitConverter.ToString(key).Replace("-","");
-            tbGenDES.Text = BitConverter.ToString(key).Replace("-", "");
         }
         private byte[] genKey(string password, int keyBytes)
         {

@@ -870,9 +870,9 @@ namespace EncryptionForm
                 return;
             }
             string keyMode;
-            if (keyLengthGenAES.SelectedIndex == 0)
+            if (tbGenAES.TextLength == 32)
                 keyMode = "_128_bit_";
-            else if (keyLengthGenAES.SelectedIndex == 1)
+            else if (tbGenAES.TextLength == 48)
                 keyMode = "_192_bit_";
             else
                 keyMode = "_256_bit_";

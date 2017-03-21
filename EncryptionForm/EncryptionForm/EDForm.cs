@@ -200,10 +200,6 @@ namespace EncryptionForm
 
             if (rbAES.Checked)
             {   
-                int keyMode = keyLength.SelectedIndex;
-                String key = tbKey.Text;
-                byte[] keybyte = new byte[16];
-
                 if (rbEncryption.Checked == true)
                 {
                     encryptUsingAES();
@@ -548,14 +544,8 @@ namespace EncryptionForm
                 {
                     blockData = blockData * 1000 + readData[j];
                 }
-<<<<<<< HEAD
-                cipherText[i] = rsa.encrypt(blockData).ToString();
-=======
-
                 cipherData = rsa.encrypt(blockData).ToString();
                 outputStream.WriteLine(cipherData);
-
->>>>>>> origin/master
                 progressBar.Value = i;
              }
 
@@ -757,6 +747,7 @@ namespace EncryptionForm
             int cipherLength;
             byte[] plainTextBlock = new byte[16];
             byte[] cipherTextBlock = new byte[16];
+
             if ((fileLength) % 16 != 0)
                 cipherLength = 16 * ((fileLength / 16) + 1) + 2;
             else
@@ -774,15 +765,18 @@ namespace EncryptionForm
             {
                 Array.Clear(plainTextBlock, 0, plainTextBlock.Length);
                 inputStream.Read(plainTextBlock, 0, 16);
+
                 Aes.encyptOneBLock(plainTextBlock, cipherTextBlock);
+
                 for (int j = 0; j < 16; j++)
-                    outputStream.WriteLine(cipherTextBlock[j].ToString());
+                    outputStream.WriteLine(Convert.ToString(cipherTextBlock[j]));
+
                 progressBar.Value = i;
             }
 
             //close file
             inputStream.Close();
-            inputStream.Close();
+            outputStream.Close();
 
             //Announcement 
             MessageBox.Show("Encryption Successful", "Congratulation", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -796,14 +790,23 @@ namespace EncryptionForm
             AES Aes = new AES(keyMode, keyInByte);
 
             string inputFile = tbSourceFile.Text;
-            string[] cipherText = System.IO.File.ReadAllLines(inputFile);
+            string outputFile = tbOutputDirectory.Text;
+
+            StreamReader inputStream = new StreamReader(inputFile);
+            string fileName = inputStream.ReadLine();
+            int fileSize = Int32.Parse(inputStream.ReadLine());
+
             byte[] plainTextBlock = new byte[16];
             byte[] cipherTextBlock = new byte[16];
-            string fileName = cipherText[0];
-            int fileSize = Int32.Parse(cipherText[1]);
-            int fileLength = cipherText.Length;
+            int cipherLength;
 
-            string outputFile = tbOutputDirectory.Text;
+            if (fileSize % 16 != 0)
+                cipherLength = 16 * ((fileSize / 16) + 1) + 2;
+            else
+                cipherLength = fileSize + 2;
+
+            int redundant = cipherLength - fileSize - 2;
+
             if (outputFile[outputFile.Length - 1] != '\\')
             {
                 outputFile += "\\" + fileName;
@@ -815,26 +818,31 @@ namespace EncryptionForm
 
             //open file to read and write
             FileStream outputStream = new FileStream(outputFile, FileMode.OpenOrCreate, FileAccess.Write);
-            byte[] plainText = new byte[fileLength - 2];
-            if (fileLength < 16)
-                progressBar.Maximum = fileLength - 1;
+
+            if (cipherLength < 16)
+                progressBar.Maximum = cipherLength - 1;
             else
-                progressBar.Maximum = fileLength - 16;
+                progressBar.Maximum = cipherLength - 16;
+
             progressBar.Value = 1;
             //decrypt
-            for (int i = 2; i < fileLength; i+=16)
+            for (int i = 2; i < cipherLength; i+=16)
             {
                 for (int j = 0; j < 16; j++)
-                    cipherTextBlock[j] = Convert.ToByte(cipherText[i + j], 10);
+                    cipherTextBlock[j] = Convert.ToByte(inputStream.ReadLine(), 10);
+
                 Aes.decyptOneBLock(cipherTextBlock, plainTextBlock);
-                for (int j = 0; j < 16; j++)
-                    plainText[i + j - 2] = plainTextBlock[j];
+
+                if (i == (cipherLength - 16))
+                    outputStream.Write(plainTextBlock, 0, 16 - redundant);
+                else
+                    outputStream.Write(plainTextBlock, 0, 16);
+
                 progressBar.Value = i;
             }
 
-            outputStream.Write(plainText, 0, fileSize);
-
-            //close output file
+            //close file
+            inputStream.Close();
             outputStream.Close();
 
             //Announcement 

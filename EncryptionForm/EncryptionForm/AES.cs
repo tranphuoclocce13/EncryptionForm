@@ -45,9 +45,6 @@ namespace EncryptionForm
         private byte[,] rCon;
         private int keyLengthMode;
         private byte[,] expandedKey;
-        //private byte[] key = new byte[24] { 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f, 0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17 };
-        //private byte[] plaintext = new byte[16] { 0xdd, 0xa9, 0x7c, 0xa4, 0x86, 0x4c, 0xdf, 0xe0, 0x6e, 0xaf, 0x70, 0xa0, 0xec, 0x0d, 0x71, 0x91 };
-        //private byte[] ciphertext;
         private byte[,] state;
         public AES (int keyLengthMode, byte[] key)
         {
@@ -80,13 +77,13 @@ namespace EncryptionForm
                 state[i / 4, i % 4] = plainText[i];
             }
             addRoundKey(0);
-            //for (int i = 1; i < numOfRound; i++)
-            //{
-            //    substituteBytes();
-            //    shiftRows();
-            //    mixColumns();
-            //    addRoundKey(i);
-            //}
+            for (int i = 1; i < numOfRound; i++)
+            {
+                substituteBytes();
+                shiftRows();
+                mixColumns();
+                addRoundKey(i);
+            }
             substituteBytes();
             shiftRows();
             addRoundKey(numOfRound);
@@ -222,7 +219,7 @@ namespace EncryptionForm
             {
                 for (int j = 0; j < 4; j++)
                 {
-                    state[i, j] = XOR(state[i, j], expandedKey[roundNum*4 + i, j]);
+                    state[i, j] = (byte)((int)state[i, j] ^ (int)expandedKey[roundNum*4 + i, j]);
                 }
             }
         }
@@ -259,18 +256,7 @@ namespace EncryptionForm
         }
         private byte XOR(byte op1, byte op2)
         {
-            String strOp1 = Convert.ToString(op1, 2).PadLeft(8, '0');
-            String strOp2 = Convert.ToString(op2, 2).PadLeft(8, '0');
-            String strOut = "";
-            for (int i = 0; i < strOp1.Length; i++)
-            {
-                if (strOp1[i].Equals(strOp2[i]))
-                    strOut += '0';
-                else
-                    strOut += '1';
-            }
-            byte byteOut = Convert.ToByte(strOut, 2);
-            return byteOut;
+            return (byte)((int) op1 ^ (int) op2);
         }
         private byte[] subWord(byte[] wordIn)
         {
@@ -377,7 +363,7 @@ namespace EncryptionForm
             if (b < 0x80)
                 return (byte)(int)(b << 1);
             else
-                return XOR((byte)(int)(b << 1), 0x1b);
+                return (byte)((int)(b << 1) ^ (int)0x1b);
         }
         private byte gfMulBy03(byte b)
         {

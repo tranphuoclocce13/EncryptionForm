@@ -769,9 +769,12 @@ namespace EncryptionForm
             {
                 Array.Clear(plainTextBlock, 0, plainTextBlock.Length);
                 inputStream.Read(plainTextBlock, 0, 16);
+
                 Aes.encyptOneBLock(plainTextBlock, cipherTextBlock);
+
                 for (int j = 0; j < 16; j++)
                     outputStream.WriteLine(cipherTextBlock[j].ToString());
+
                 progressBar.Value = i;
             }
 
@@ -821,9 +824,12 @@ namespace EncryptionForm
             {
                 for (int j = 0; j < 16; j++)
                     cipherTextBlock[j] = Convert.ToByte(cipherText[i + j], 10);
+
                 Aes.decyptOneBLock(cipherTextBlock, plainTextBlock);
+
                 for (int j = 0; j < 16; j++)
                     plainText[i + j - 2] = plainTextBlock[j];
+
                 progressBar.Value = i;
             }
 

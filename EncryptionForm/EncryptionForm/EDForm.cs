@@ -548,14 +548,10 @@ namespace EncryptionForm
                 {
                     blockData = blockData * 1000 + readData[j];
                 }
-<<<<<<< HEAD
-                cipherText[i] = rsa.encrypt(blockData).ToString();
-=======
 
                 cipherData = rsa.encrypt(blockData).ToString();
                 outputStream.WriteLine(cipherData);
 
->>>>>>> origin/master
                 progressBar.Value = i;
              }
 

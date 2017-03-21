@@ -220,7 +220,7 @@ namespace EncryptionForm
             {
                 for (int j = 0; j < 4; j++)
                 {
-                    state[i, j] = (byte)((int)state[i, j] ^ (int)expandedKey[roundNum*4 + i, j]);
+                    state[i, j] = (byte)((int)state[i, j] ^ (int)expandedKey[roundNum * 4 + i, j]);
                 }
             }
         }

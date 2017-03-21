@@ -763,6 +763,7 @@ namespace EncryptionForm
             else
                 progressBar.Maximum = cipherLength - 16;
             progressBar.Value = 1;
+
             //encrypt
             for (int i = 2; i < cipherLength; i += 16)
             {

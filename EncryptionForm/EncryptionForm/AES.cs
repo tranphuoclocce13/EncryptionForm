@@ -46,6 +46,8 @@ namespace EncryptionForm
         private int keyLengthMode;
         private byte[,] expandedKey;
         private byte[,] state;
+
+        //Constructor
         public AES (int keyLengthMode, byte[] key)
         {
             state = new byte[Constants.BLOCK_SIZE / Constants.WORD_SIZE, Constants.WORD_SIZE];
@@ -57,13 +59,13 @@ namespace EncryptionForm
             expandKey(key);
         }
 
-        //Encrypt a file
+        //Encrypt a file (not implemented)
         public void encyptFile()
         {
 
         }
 
-        //Decrypt a file
+        //Decrypt a file (not implemented)
         public void decyptFile()
         {
 
@@ -175,20 +177,20 @@ namespace EncryptionForm
         //Mix Columns Transformation
         private void mixColumns()
         {
+
             byte[,] temp = new byte[4,4];
+            Array.Copy(state, temp, 16);
+
             for (int i = 0; i < 4; i++)
             {
-                for (int j = 0; j < 4; j++)
-                {
-                    temp[i, j] = state[i, j];
-                }
-            }
-            for (int i = 0; i < 4; i++)
-            {
-                state[i, 0] = XOR(XOR(gfMulBy02(temp[i, 0]), gfMulBy03(temp[i, 1])), XOR(gfMulBy01(temp[i, 2]), gfMulBy01(temp[i, 3])));
-                state[i, 1] = XOR(XOR(gfMulBy01(temp[i, 0]), gfMulBy02(temp[i, 1])), XOR(gfMulBy03(temp[i, 2]), gfMulBy01(temp[i, 3])));
-                state[i, 2] = XOR(XOR(gfMulBy01(temp[i, 0]), gfMulBy01(temp[i, 1])), XOR(gfMulBy02(temp[i, 2]), gfMulBy03(temp[i, 3])));
-                state[i, 3] = XOR(XOR(gfMulBy03(temp[i, 0]), gfMulBy01(temp[i, 1])), XOR(gfMulBy01(temp[i, 2]), gfMulBy02(temp[i, 3])));
+                state[i, 0] = (byte)((int)gfMulBy02(temp[i, 0]) ^ (int)gfMulBy03(temp[i, 1]) ^
+                                     (int)gfMulBy01(temp[i, 2]) ^ (int)gfMulBy01(temp[i, 3]));
+                state[i, 1] = (byte)((int)gfMulBy01(temp[i, 0]) ^ (int)gfMulBy02(temp[i, 1]) ^
+                                     (int)gfMulBy03(temp[i, 2]) ^ (int)gfMulBy01(temp[i, 3]));
+                state[i, 2] = (byte)((int)gfMulBy01(temp[i, 0]) ^ (int)gfMulBy01(temp[i, 1]) ^
+                                     (int)gfMulBy02(temp[i, 2]) ^ (int)gfMulBy03(temp[i, 3]));
+                state[i, 3] = (byte)((int)gfMulBy03(temp[i, 0]) ^ (int)gfMulBy01(temp[i, 1]) ^
+                                     (int)gfMulBy01(temp[i, 2]) ^ (int)gfMulBy02(temp[i, 3]));
             }
         }
 
@@ -196,19 +198,18 @@ namespace EncryptionForm
         private void invMixColumns()
         {
             byte[,] temp = new byte[4, 4];
+            Array.Copy(state, temp, 16);
+
             for (int i = 0; i < 4; i++)
             {
-                for (int j = 0; j < 4; j++)
-                {
-                    temp[i, j] = state[i, j];
-                }
-            }
-            for (int i = 0; i < 4; i++)
-            {
-                state[i, 0] = XOR(XOR(gfMulBy0e(temp[i, 0]), gfMulBy0b(temp[i, 1])), XOR(gfMulBy0d(temp[i, 2]), gfMulBy09(temp[i, 3])));
-                state[i, 1] = XOR(XOR(gfMulBy09(temp[i, 0]), gfMulBy0e(temp[i, 1])), XOR(gfMulBy0b(temp[i, 2]), gfMulBy0d(temp[i, 3])));
-                state[i, 2] = XOR(XOR(gfMulBy0d(temp[i, 0]), gfMulBy09(temp[i, 1])), XOR(gfMulBy0e(temp[i, 2]), gfMulBy0b(temp[i, 3])));
-                state[i, 3] = XOR(XOR(gfMulBy0b(temp[i, 0]), gfMulBy0d(temp[i, 1])), XOR(gfMulBy09(temp[i, 2]), gfMulBy0e(temp[i, 3])));
+                state[i, 0] = (byte)((int)gfMulBy0e(temp[i, 0]) ^ (int)gfMulBy0b(temp[i, 1]) ^
+                                     (int)gfMulBy0d(temp[i, 2]) ^ (int)gfMulBy09(temp[i, 3]));
+                state[i, 1] = (byte)((int)gfMulBy09(temp[i, 0]) ^ (int)gfMulBy0e(temp[i, 1]) ^
+                                     (int)gfMulBy0b(temp[i, 2]) ^ (int)gfMulBy0d(temp[i, 3]));
+                state[i, 2] = (byte)((int)gfMulBy0d(temp[i, 0]) ^ (int)gfMulBy09(temp[i, 1]) ^
+                                     (int)gfMulBy0e(temp[i, 2]) ^ (int)gfMulBy0b(temp[i, 3]));
+                state[i, 3] = (byte)((int)gfMulBy0b(temp[i, 0]) ^ (int)gfMulBy0d(temp[i, 1]) ^
+                                     (int)gfMulBy09(temp[i, 2]) ^ (int)gfMulBy0e(temp[i, 3]));
             }
         }
 
@@ -244,20 +245,18 @@ namespace EncryptionForm
                 {
                     temp = subWord(rotWord(temp));
                     for (int j = 0; j < Constants.WORD_SIZE; j++)
-                        temp[j] = XOR(temp[j], rCon[i / wordOfKey, j]);
+                        temp[j] = (byte)((int)temp[j] ^ (int)rCon[i / wordOfKey, j]);
                 }
                 else if (i % wordOfKey == 4 && wordOfKey > 6)
                 {
                     temp = subWord(temp);
                 }
                 for (int j = 0; j < Constants.WORD_SIZE; j++)
-                    expandedKey[i, j] = XOR(expandedKey[i - wordOfKey, j], temp[j]);
+                    expandedKey[i, j] = (byte)((int)expandedKey[i - wordOfKey, j] ^ (int)temp[j]);
             }
         }
-        private byte XOR(byte op1, byte op2)
-        {
-            return (byte)((int) op1 ^ (int) op2);
-        }
+
+        //Functions Of Key Expansion Operation
         private byte[] subWord(byte[] wordIn)
         {
             byte[] wordOut = new byte[4];
@@ -276,6 +275,8 @@ namespace EncryptionForm
             wordOut[3] = wordIn[0];
             return wordOut;
         }
+
+        //Initialize essential variables
         private void initSBox()
         {
             sBox = new byte[16, 16] {
@@ -354,6 +355,8 @@ namespace EncryptionForm
                 numOfRound = Constants._256_BITS_NUM_ROUND;
             }
         }
+
+        //Multiplication-in-GF Funtions
         private byte gfMulBy01(byte b)
         {
             return b;
@@ -367,23 +370,23 @@ namespace EncryptionForm
         }
         private byte gfMulBy03(byte b)
         {
-            return XOR(gfMulBy02(b), b);
+            return (byte)((int)gfMulBy02(b) ^ (int)b);
         }
         private byte gfMulBy09(byte b)
         {
-            return XOR(gfMulBy02(gfMulBy02(gfMulBy02(b))), b);
+            return (byte)((int)gfMulBy02(gfMulBy02(gfMulBy02(b))) ^ (int)b);
         }
         private byte gfMulBy0b(byte b)
         {
-            return XOR(gfMulBy02(gfMulBy02(gfMulBy02(b))), XOR(gfMulBy02(b), b));
+            return (byte)((int)gfMulBy02(gfMulBy02(gfMulBy02(b))) ^ (int)gfMulBy02(b) ^ (int)b);
         }
         private byte gfMulBy0d(byte b)
         {
-            return XOR(gfMulBy02(gfMulBy02(gfMulBy02(b))), XOR(gfMulBy02(gfMulBy02(b)),b));
+            return (byte)((int)gfMulBy02(gfMulBy02(gfMulBy02(b))) ^ (int)gfMulBy02(gfMulBy02(b)) ^ (int)b);
         }
         private byte gfMulBy0e(byte b)
         {
-            return XOR(gfMulBy02(gfMulBy02(gfMulBy02(b))), XOR(gfMulBy02(gfMulBy02(b)), gfMulBy02(b)));
+            return (byte)((int)gfMulBy02(gfMulBy02(gfMulBy02(b))) ^ (int)gfMulBy02(gfMulBy02(b)) ^ (int)gfMulBy02(b));
         }
     }
 }

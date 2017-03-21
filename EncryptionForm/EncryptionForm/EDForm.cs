@@ -207,14 +207,10 @@ namespace EncryptionForm
                 if (rbEncryption.Checked == true)
                 {
                     encryptUsingAES();
-                    GC.Collect();
-                    GC.WaitForPendingFinalizers();
                 }
                 else
                 {
                     decryptUsingAES();
-                    GC.Collect();
-                    GC.WaitForPendingFinalizers();
                 }
             }
 
@@ -229,6 +225,8 @@ namespace EncryptionForm
                     //
                 }
             }
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
         }
 /*MD5 Checksum*/
 
